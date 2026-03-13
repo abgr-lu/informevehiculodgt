@@ -72,34 +72,33 @@ Servicio basado en datos públicos de la DGT. Tras realizar el pago, se procesar
 
 <script src="https://js.stripe.com/v3/"></script>
 <script>
-const stripe = Stripe('pk_live_51TAWrbFVjMJ87hr1dFLrxlNpGW4fRd8hZfsp5ZT5ReIeP2TjhvI7BA0MVQGDhH9sR8kBWfoVuKVVNjcotIVSmcaq00lIHH3gbh');
+document.addEventListener('DOMContentLoaded', function() {
+  const stripe = Stripe('pk_live_51TAWrbFVjMJ87hr1dFLrxlNpGW4fRd8hZfsp5ZT5ReIeP2TjhvI7BA0MVQGDhH9sR8kBWfoVuKVVNjcotIVSmcaq00lIHH3gbh');
 
-// Informe rápido
-document.getElementById('btn-rapido').addEventListener('click', function() {
-  const matricula = document.getElementById('matricula-rapido').value.trim();
-  const email = document.getElementById('email-rapido').value.trim();
-  if(!matricula || !email) { alert('Por favor, completa matrícula y email'); return; }
-
-  // Redirige al Checkout
-  stripe.redirectToCheckout({
-    lineItems: [{ price: 'price_1TAYB5FVjMJ87hr1xrmRXUdE', quantity: 1 }],
-    mode: 'payment',
-    successUrl: window.location.href + '?success=true&tipo=rapido&matricula=' + encodeURIComponent(matricula) + '&email=' + encodeURIComponent(email),
-    cancelUrl: window.location.href
+  // Informe rápido
+  document.getElementById('btn-rapido').addEventListener('click', function() {
+    const matricula = document.getElementById('matricula-rapido').value.trim();
+    const email = document.getElementById('email-rapido').value.trim();
+    if(!matricula || !email) { alert('Por favor, completa matrícula y email'); return; }
+    stripe.redirectToCheckout({
+      lineItems: [{ price: 'price_1TAYB5FVjMJ87hr1xrmRXUdE', quantity: 1 }],
+      mode: 'payment',
+      successUrl: window.location.href + '?success=true&tipo=rapido&matricula=' + encodeURIComponent(matricula) + '&email=' + encodeURIComponent(email),
+      cancelUrl: window.location.href
+    });
   });
-});
 
-// Informe urgente
-document.getElementById('btn-urgente').addEventListener('click', function() {
-  const matricula = document.getElementById('matricula-urgente').value.trim();
-  const email = document.getElementById('email-urgente').value.trim();
-  if(!matricula || !email) { alert('Por favor, completa matrícula y email'); return; }
-
-  stripe.redirectToCheckout({
-    lineItems: [{ price: 'price_1TAYB3FVjMJ87hr1OvFGwWN0', quantity: 1 }],
-    mode: 'payment',
-    successUrl: window.location.href + '?success=true&tipo=urgente&matricula=' + encodeURIComponent(matricula) + '&email=' + encodeURIComponent(email),
-    cancelUrl: window.location.href
+  // Informe urgente
+  document.getElementById('btn-urgente').addEventListener('click', function() {
+    const matricula = document.getElementById('matricula-urgente').value.trim();
+    const email = document.getElementById('email-urgente').value.trim();
+    if(!matricula || !email) { alert('Por favor, completa matrícula y email'); return; }
+    stripe.redirectToCheckout({
+      lineItems: [{ price: 'price_1TAYB3FVjMJ87hr1OvFGwWN0', quantity: 1 }],
+      mode: 'payment',
+      successUrl: window.location.href + '?success=true&tipo=urgente&matricula=' + encodeURIComponent(matricula) + '&email=' + encodeURIComponent(email),
+      cancelUrl: window.location.href
+    });
   });
 });
 </script>
