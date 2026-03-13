@@ -13,90 +13,70 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
-body {
-  font-family: 'Roboto', Arial, sans-serif;
-  margin: 0;
-  background: #f5f5f5;
-}
+/* RESET Y TIPOGRAFÍA */
+body, h1, h2, h3, p, ul { margin:0; padding:0; }
+body { font-family: 'Roboto', Arial, sans-serif; background:#f5f5f5; line-height:1.6; }
+ul { list-style:none; }
+
+/* HEADER */
 header {
-  background: #003366;
-  color: white;
-  padding: 50px 20px;
-  text-align: center;
+  background:#003366;
+  color:white;
+  text-align:center;
+  padding:60px 20px;
 }
-header h1 { margin:0; font-size:2.5em; }
+header h1 { font-size:2.8em; margin-bottom:10px; }
 header p { font-size:1.2em; }
 
+/* CONTENEDOR PRINCIPAL */
 .container {
-  max-width: 900px;
-  margin: 30px auto;
-  background: white;
-  padding: 40px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  border-radius: 10px;
-}
-
-h2 {
-  margin-top: 40px;
-  color: #003366;
-}
-
-ul { list-style: none; padding-left:0; }
-ul li { padding:5px 0; }
-
-.pricebox {
-  border: 1px solid #ddd;
+  max-width: 1000px;
+  margin: 40px auto;
   padding: 20px;
-  margin: 10px 0;
-  border-radius: 8px;
-  background: #f9f9f9;
 }
-.pricebox b { font-size:1.2em; }
 
-form {
-  margin-top:20px;
+/* SECCIONES */
+section { margin-bottom:60px; }
+h2 { color:#003366; margin-bottom:20px; text-align:center; }
+
+/* LISTAS */
+ul li { margin-bottom:10px; }
+
+/* TARJETAS DE PRECIOS */
+.pricing {
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:20px;
 }
-input, select {
-  width: 100%;
-  padding: 12px;
-  margin: 10px 0 20px 0;
-  border:1px solid #ccc;
-  border-radius:6px;
-  font-size:1em;
-}
-button {
-  background:#2ecc71;
-  color:white;
-  border:none;
-  padding:15px;
-  font-size:16px;
-  cursor:pointer;
-  width:100%;
-  border-radius:6px;
+.pricebox {
+  flex:1 1 250px;
+  background:#fff;
+  padding:30px;
+  border-radius:12px;
+  text-align:center;
+  box-shadow:0 4px 15px rgba(0,0,0,0.1);
   transition:0.3s;
 }
+.pricebox:hover { transform:translateY(-5px); }
+.pricebox b { font-size:1.4em; display:block; margin-top:10px; }
+
+/* FORMULARIO */
+form { background:#fff; padding:30px; border-radius:12px; box-shadow:0 4px 15px rgba(0,0,0,0.1); max-width:600px; margin:auto; }
+input, select { width:100%; padding:12px; margin:10px 0 20px 0; border:1px solid #ccc; border-radius:6px; font-size:1em; }
+button { background:#2ecc71; color:white; border:none; padding:15px; font-size:16px; cursor:pointer; width:100%; border-radius:6px; transition:0.3s; }
 button:hover { background:#27ae60; }
+p.success { color:green; font-weight:bold; display:none; text-align:center; margin-top:10px; }
 
-.contact-buttons a {
-  text-decoration:none;
-  margin:10px 0;
-  display:block;
-}
-.contact-buttons button {
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:10px;
-}
+/* BOTONES DE CONTACTO */
+.contact-buttons a { text-decoration:none; display:block; margin:10px auto; max-width:400px; }
+.contact-buttons button { display:flex; justify-content:center; align-items:center; gap:10px; }
 
-p.success { color:green; font-weight:bold; display:none; }
+/* FOOTER */
+footer { text-align:center; color:#555; font-size:13px; margin:40px 0; }
 
-footer {
-  text-align:center;
-  font-size:13px;
-  color:#555;
-  margin-top:40px;
-}
+/* RESPONSIVE */
+@media(max-width:600px){ .pricing { flex-direction:column; } }
 </style>
 </head>
 <body>
@@ -108,52 +88,73 @@ footer {
 
 <div class="container">
 
-  <h2>¿Qué incluye el informe?</h2>
-  <ul>
-    <li>✔ Titulares anteriores</li>
-    <li>✔ Cargas o embargos</li>
-    <li>✔ Historial ITV</li>
-    <li>✔ Kilometraje registrado</li>
-    <li>✔ Si el vehículo está robado</li>
-    <li>✔ Situación administrativa</li>
-    <li>✔ Datos técnicos del vehículo</li>
-  </ul>
+  <!-- SECCIÓN: Qué incluye -->
+  <section id="includes">
+    <h2>¿Qué incluye el informe?</h2>
+    <ul>
+      <li>✔ Titulares anteriores</li>
+      <li>✔ Cargas o embargos</li>
+      <li>✔ Historial ITV</li>
+      <li>✔ Kilometraje registrado</li>
+      <li>✔ Si el vehículo está robado</li>
+      <li>✔ Situación administrativa</li>
+      <li>✔ Datos técnicos del vehículo</li>
+    </ul>
+  </section>
 
-  <h2>Tipos de informe</h2>
-  <div class="pricebox"><b>Informe normal</b><br>Entrega en pocas horas<br><b>25 €</b></div>
-  <div class="pricebox"><b>Informe urgente</b><br>Entrega rápida<br><b>29 €</b></div>
+  <!-- SECCIÓN: Precios -->
+  <section id="pricing">
+    <h2>Tipos de informe</h2>
+    <div class="pricing">
+      <div class="pricebox">
+        <h3>Informe normal</h3>
+        <p>Entrega en pocas horas</p>
+        <b>25 €</b>
+      </div>
+      <div class="pricebox">
+        <h3>Informe urgente</h3>
+        <p>Entrega rápida</p>
+        <b>29 €</b>
+      </div>
+    </div>
+  </section>
 
-  <h2>Solicitar informe</h2>
-  <form action="https://formspree.io/f/xojkwgvv" method="POST">
-    <label>Matrícula</label>
-    <input type="text" name="matricula" required>
+  <!-- SECCIÓN: Formulario -->
+  <section id="order">
+    <h2>Solicitar informe</h2>
+    <form action="https://formspree.io/f/xojkwgvv" method="POST">
+      <label>Matrícula</label>
+      <input type="text" name="matricula" required>
 
-    <label>Email</label>
-    <input type="email" name="email" required>
+      <label>Email</label>
+      <input type="email" name="email" required>
 
-    <label>Tipo de informe</label>
-    <select name="tipo">
-      <option>Informe normal</option>
-      <option>Informe urgente</option>
-    </select>
+      <label>Tipo de informe</label>
+      <select name="tipo">
+        <option>Informe normal</option>
+        <option>Informe urgente</option>
+      </select>
 
-    <button type="submit"><i class="fas fa-paper-plane"></i> Solicitar informe</button>
-  </form>
+      <button type="submit"><i class="fas fa-paper-plane"></i> Solicitar informe</button>
+    </form>
+    <p class="success" id="successMessage">¡Formulario enviado! Revisa tu correo.</p>
+  </section>
 
-  <p class="success" id="successMessage">¡Formulario enviado! Revisa tu correo.</p>
-
-  <h2>Contacta conmigo</h2>
-  <div class="contact-buttons">
-    <a href="mailto:lmartinnievas@gmail.com">
-      <button><i class="fas fa-envelope"></i> Enviar correo</button>
-    </a>
-    <!-- Botón Bizum: descomentar y añadir enlace -->
-    <!--
-    <a href="TU_ENLACE_DE_BIZUM" target="_blank">
-      <button><i class="fas fa-hand-holding-usd"></i> Pagar con Bizum</button>
-    </a>
-    -->
-  </div>
+  <!-- SECCIÓN: Contacto -->
+  <section id="contact">
+    <h2>Contacta conmigo</h2>
+    <div class="contact-buttons">
+      <a href="mailto:lmartinnievas@gmail.com">
+        <button><i class="fas fa-envelope"></i> Enviar correo</button>
+      </a>
+      <!-- Botón Bizum: descomentar y añadir enlace -->
+      <!--
+      <a href="TU_ENLACE_DE_BIZUM" target="_blank">
+        <button><i class="fas fa-hand-holding-usd"></i> Pagar con Bizum</button>
+      </a>
+      -->
+    </div>
+  </section>
 
 </div>
 
