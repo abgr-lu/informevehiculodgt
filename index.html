@@ -6,7 +6,7 @@
 <title>Informe Vehículo DGT</title>
 
 <!-- Favicon -->
-<link rel="icon" href="a_digital_vector_vector_logo_design_showcases_a_sl.png" type="image/png">
+<link rel="icon" href="favicon.png" type="image/png">
 
 <style>
 body {
@@ -55,13 +55,11 @@ button.pay {
 button.pay:hover {
     background: #0055aa;
 }
-.policy {
+footer {
     margin-top: 40px;
-    font-size: 14px;
-    color: #333;
-}
-.policy h3 {
-    color: #003366;
+    font-size: 12px;
+    color: #666;
+    text-align: center;
 }
 </style>
 </head>
@@ -86,18 +84,11 @@ button.pay:hover {
     <button class="pay" onclick="goToStripe('29')">Informe Vehículo Urgente - 29 €</button>
 </div>
 
-<div class="policy">
-<h3>Política de Privacidad</h3>
-<p>En <strong>Informe Vehículo DGT</strong> nos comprometemos a proteger tu privacidad y garantizar la seguridad de tus datos personales.</p>
-<p><strong>Datos que recopilamos:</strong> matrícula y email, información de pago procesada por Stripe.</p>
-<p><strong>Uso de los datos:</strong> generar y enviar el informe solicitado, enviar notificaciones sobre tu pedido, fines legales y administrativos.</p>
-<p><strong>Compartición de datos:</strong> no vendemos ni compartimos tus datos con terceros, Stripe gestiona la información de pago.</p>
-<p><strong>Seguridad:</strong> medidas técnicas y organizativas para proteger tus datos.</p>
-<p><strong>Tus derechos:</strong> acceder, rectificar, eliminar tus datos, limitar tratamiento, portabilidad u oponerte. Contacto: contacto@informevehiculodgt.es</p>
-<p><strong>Cookies:</strong> solo estrictamente necesarias para el funcionamiento del formulario y pago.</p>
 </div>
 
-</div>
+<footer>
+<p>Política de Privacidad: Tu información (matrícula y email) se usa solo para generar el informe y procesar pagos seguros mediante Stripe. No compartimos tus datos con terceros.</p>
+</footer>
 
 <!-- Stripe.js -->
 <script src="https://js.stripe.com/v3/"></script>
@@ -112,7 +103,7 @@ function goToStripe(price) {
         alert('Por favor, completa matrícula y email antes de continuar.');
         return;
     }
-    // Aquí podrías enviar matricula/email a tu servidor si quieres guardar antes de Stripe
+    // Podrías enviar matricula/email a tu servidor aquí si quieres guardar antes de Stripe
     if (price === '25') {
         window.location.href = stripeR;
     } else if (price === '29') {
