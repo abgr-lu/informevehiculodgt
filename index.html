@@ -10,84 +10,130 @@
 
 <style>
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    background: #fff;
-    color: #000;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #fff;
+  color: #000;
 }
 header {
-    background: #003366;
-    color: white;
-    padding: 20px;
-    text-align: center;
+  background: #003366;
+  color: #fff;
+  padding: 30px 20px;
+  text-align: center;
 }
 h1 {
-    margin: 0;
+  margin: 0;
+  font-size: 2.2em;
 }
 h2 {
-    color: #003366;
+  color: #003366;
+  margin-top: 30px;
+  font-size: 1.5em;
 }
 .container {
-    max-width: 900px;
-    margin: 20px auto;
-    padding: 20px;
+  max-width: 1000px;
+  margin: 20px auto;
+  padding: 20px;
 }
-.form-section, .products {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 20px;
+.form-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 30px;
+  justify-content: center;
 }
 .form-section input {
-    padding: 10px;
-    font-size: 16px;
-    width: 48%;
+  padding: 14px;
+  font-size: 16px;
+  flex: 1 1 40%;
+  min-width: 200px;
+  border: 1px solid #003366;
+  border-radius: 4px;
+}
+.products {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+.product-card {
+  border: 2px solid #003366;
+  border-radius: 10px;
+  padding: 30px;
+  text-align: center;
+  flex: 1 1 300px;
+  min-width: 280px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+}
+.product-card h3 {
+  margin: 0 0 10px 0;
+  color: #003366;
+}
+.product-card p {
+  margin: 0 0 20px 0;
+  font-size: 1em;
 }
 button.pay {
-    background: #003366;
-    color: #fff;
-    border: none;
-    padding: 15px;
-    font-size: 16px;
-    cursor: pointer;
-    width: 48%;
+  background: #003366;
+  color: #fff;
+  border: none;
+  padding: 16px 25px;
+  font-size: 18px;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background 0.3s;
 }
 button.pay:hover {
-    background: #0055aa;
+  background: #0055aa;
 }
 footer {
-    margin-top: 40px;
-    font-size: 12px;
-    color: #666;
-    text-align: center;
+  margin-top: 40px;
+  font-size: 12px;
+  color: #666;
+  text-align: center;
+  padding-bottom: 20px;
 }
 </style>
 </head>
 <body>
 
 <header>
-    <h1>Informe Vehículo DGT</h1>
-    <p><strong>Evita sorpresas al comprar un vehículo de segunda mano</strong></p>
+  <h1>Informe Vehículo DGT</h1>
+  <p><strong>Evita sorpresas al comprar un vehículo de segunda mano</strong></p>
 </header>
 
 <div class="container">
-
-<h2>Introduce tus datos</h2>
-<div class="form-section">
+  <h2>Introduce tus datos</h2>
+  <div class="form-section">
     <input type="text" id="matricula" placeholder="Matrícula">
     <input type="email" id="email" placeholder="Email">
-</div>
+  </div>
 
-<h2>Selecciona el tipo de informe</h2>
-<div class="products">
-    <button class="pay" onclick="goToStripe('25')">Informe Vehículo Rápido - 25 €</button>
-    <button class="pay" onclick="goToStripe('29')">Informe Vehículo Urgente - 29 €</button>
-</div>
+  <h2>Selecciona el tipo de informe</h2>
+  <div class="products">
+    <div class="product-card">
+      <h3>Informe Vehículo Rápido</h3>
+      <p>Entrega en pocas horas</p>
+      <p><strong>25 €</strong></p>
+      <button class="pay" onclick="goToStripe('25')">Solicitar Informe</button>
+    </div>
 
+    <div class="product-card">
+      <h3>Informe Vehículo Urgente</h3>
+      <p>Entrega inmediata</p>
+      <p><strong>29 €</strong></p>
+      <button class="pay" onclick="goToStripe('29')">Solicitar Informe</button>
+    </div>
+  </div>
 </div>
 
 <footer>
-<p>Política de Privacidad: Tu información (matrícula y email) se usa solo para generar el informe y procesar pagos seguros mediante Stripe. No compartimos tus datos con terceros.</p>
+  <p>Política de Privacidad: Tu información (matrícula y email) se usa solo para generar el informe y procesar pagos seguros mediante Stripe. No compartimos tus datos con terceros.</p>
 </footer>
 
 <!-- Stripe.js -->
@@ -97,18 +143,18 @@ const stripeR = "https://buy.stripe.com/dRm6oH9571ox1Ila8ugrS00"; // 25€
 const stripeU = "https://buy.stripe.com/bJeaEX4OR9V3fzb1BYgrS01"; // 29€
 
 function goToStripe(price) {
-    const matricula = document.getElementById('matricula').value.trim();
-    const email = document.getElementById('email').value.trim();
-    if (!matricula || !email) {
-        alert('Por favor, completa matrícula y email antes de continuar.');
-        return;
-    }
-    // Podrías enviar matricula/email a tu servidor aquí si quieres guardar antes de Stripe
-    if (price === '25') {
-        window.location.href = stripeR;
-    } else if (price === '29') {
-        window.location.href = stripeU;
-    }
+  const matricula = document.getElementById('matricula').value.trim();
+  const email = document.getElementById('email').value.trim();
+  if (!matricula || !email) {
+    alert('Por favor, completa matrícula y email antes de continuar.');
+    return;
+  }
+  // Aquí podrías enviar matrícula/email a tu servidor si quieres guardarlos
+  if (price === '25') {
+    window.location.href = stripeR;
+  } else if (price === '29') {
+    window.location.href = stripeU;
+  }
 }
 </script>
 
