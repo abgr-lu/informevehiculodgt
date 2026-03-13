@@ -2,69 +2,110 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Informe Vehículo DGT</title>
+<title>Informe Vehículo DGT – Compra segura</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Stripe JS -->
+<script src="https://js.stripe.com/v3/"></script>
 <style>
-body { font-family: Arial, sans-serif; margin: 0; background: #f5f5f5; }
-header { background: #003366; color: white; padding: 40px; text-align: center; }
-.container { max-width: 900px; margin: 20px auto; background: white; padding: 40px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1);}
-h2 { margin-top: 30px; }
-input[type="text"], input[type="email"] { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px; }
-button { border: none; cursor: pointer; border-radius: 5px; }
-button.submit { background: #003366; color: white; padding: 15px; font-size: 16px; width: 100%; }
-.pricebox { border: 1px solid #ddd; padding: 20px; margin: 10px 0; text-align: center; border-radius: 5px; background: #fafafa;}
-button.pay { background: #2ecc71; color: white; padding: 20px; font-size: 18px; width: 100%; margin-top: 15px; }
-.payment-section { display: none; margin-top: 30px; }
+body { font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; background: #f0f2f5; }
+header { background: #001f3f; color: #fff; padding: 50px 20px; text-align: center; }
+header h1 { font-size: 2.5em; margin-bottom: 10px; }
+header p { font-size: 1.2em; color: #d0d7e0; }
+
+.container { max-width: 900px; margin: 30px auto; background: #fff; padding: 50px; border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
+h2 { font-size: 1.8em; margin-bottom: 20px; color: #001f3f; }
+
+input[type="text"], input[type="email"] { width: 100%; padding: 15px; margin: 10px 0 20px; border-radius: 8px; border: 1px solid #ccc; font-size: 1em; }
+button { border: none; cursor: pointer; border-radius: 8px; font-size: 1.1em; transition: all 0.3s ease; }
+button.submit { background: #001f3f; color: #fff; padding: 18px; width: 100%; margin-top: 10px; }
+button.submit:hover { background: #003366; }
+
+.payment-section { display: none; margin-top: 40px; }
+.pricebox { background: #f9f9fb; border-radius: 10px; padding: 30px; margin: 20px 0; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+.pricebox b { font-size: 1.4em; color: #001f3f; }
+button.pay { background: #2ecc71; color: white; padding: 18px; font-size: 1.2em; width: 100%; margin-top: 15px; }
+button.pay:hover { background: #27ae60; }
+
+.confirmation { display: none; text-align: center; padding: 40px; color: #001f3f; font-size: 1.3em; }
 </style>
-<script>
-function submitForm() {
-    const matricula = document.getElementById('matricula').value;
-    const email = document.getElementById('email').value;
-    if(!matricula || !email) {
-        alert('Por favor completa todos los campos');
-        return;
-    }
-    // Aquí podrías enviar los datos a tu backend, Google Sheets o Formspree
-    document.getElementById('form-container').style.display = 'none';
-    document.getElementById('payment-section').style.display = 'block';
-}
-</script>
 </head>
 <body>
 
 <header>
 <h1>Informe de Vehículo DGT</h1>
-<p>Consulta rápida y segura el historial de cualquier vehículo antes de comprar</p>
+<p>Evita sorpresas al comprar un vehículo de segunda mano. Consulta rápida y segura.</p>
 </header>
 
 <div class="container">
-  <!-- Formulario inicial -->
+
+  <!-- FORMULARIO INICIAL -->
   <div id="form-container">
-    <h2>Introduce tus datos</h2>
+    <h2>Introduce tus datos para continuar</h2>
     <input type="text" id="matricula" placeholder="Matrícula" required>
     <input type="email" id="email" placeholder="Email" required>
     <button class="submit" onclick="submitForm()">Continuar al pago</button>
   </div>
 
-  <!-- Sección de pago -->
+  <!-- SECCIÓN DE PAGO -->
   <div id="payment-section" class="payment-section">
     <h2>Selecciona tu tipo de informe</h2>
 
     <div class="pricebox">
-      <b>Informe Normal</b><br>Entrega en pocas horas<br><b>25 €</b><br>
-      <button class="pay" onclick="window.location.href='TU_PAYMENT_LINK_NORMAL'">Pagar y solicitar informe</button>
+      <b>Informe Normal</b><br>Entrega en pocas horas<br><b>25 €</b>
+      <button class="pay" id="btn-normal">Pagar y solicitar informe</button>
     </div>
 
     <div class="pricebox">
-      <b>Informe Urgente</b><br>Entrega rápida<br><b>29 €</b><br>
-      <button class="pay" onclick="window.location.href='TU_PAYMENT_LINK_URGENTE'">Pagar y solicitar informe</button>
+      <b>Informe Urgente</b><br>Entrega rápida<br><b>29 €</b>
+      <button class="pay" id="btn-urgente">Pagar y solicitar informe</button>
     </div>
-
-    <p style="margin-top:20px;font-size:13px;color:#555;">
-      Tras realizar el pago, recibirás tu informe basado en datos públicos de la DGT.
-    </p>
   </div>
+
+  <!-- CONFIRMACIÓN -->
+  <div id="confirmation" class="confirmation">
+    ¡Gracias! Tu pago se ha completado y tu informe será enviado a tu email.
+  </div>
+
 </div>
+
+<script>
+const stripe = Stripe('TU_STRIPE_PUBLIC_KEY'); // Pon tu clave pública de Stripe
+
+function submitForm() {
+    const matricula = document.getElementById('matricula').value.trim();
+    const email = document.getElementById('email').value.trim();
+    if(!matricula || !email) { alert('Por favor completa todos los campos'); return; }
+
+    // Aquí puedes guardar datos en tu backend si quieres
+    document.getElementById('form-container').style.display = 'none';
+    document.getElementById('payment-section').style.display = 'block';
+}
+
+// Pago usando Stripe Checkout
+document.getElementById('btn-normal').addEventListener('click', function() {
+    stripe.redirectToCheckout({
+        lineItems: [{ price: 'TU_PRICE_ID_NORMAL', quantity: 1 }],
+        mode: 'payment',
+        successUrl: window.location.href + '?success=true',
+        cancelUrl: window.location.href
+    });
+});
+
+document.getElementById('btn-urgente').addEventListener('click', function() {
+    stripe.redirectToCheckout({
+        lineItems: [{ price: 'TU_PRICE_ID_URGENTE', quantity: 1 }],
+        mode: 'payment',
+        successUrl: window.location.href + '?success=true',
+        cancelUrl: window.location.href
+    });
+});
+
+// Mostrar mensaje de éxito si se completa el pago
+if(window.location.search.includes('success=true')) {
+    document.getElementById('payment-section').style.display = 'none';
+    document.getElementById('confirmation').style.display = 'block';
+}
+</script>
 
 </body>
 </html>
