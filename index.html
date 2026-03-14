@@ -3,63 +3,135 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Informe Vehículo DGT | Comprobar coche antes de comprar</title>
+<title>Informe Vehículo DGT | Comprueba coches de segunda mano</title>
 <meta name="description" content="Obtén tu informe de vehículo DGT al instante. Comprueba cargas, embargos, kilometraje y titular antes de comprar un coche de segunda mano.">
-<meta name="keywords" content="informe DGT, informe vehículo, comprobar coche segunda mano, informe coche matrícula, cargas coche">
-<meta name="robots" content="index, follow">
-
-<!-- Favicon -->
 <link rel="icon" type="image/png" href="/favicon.png">
-
-<!-- Stripe.js -->
-<script src="https://js.stripe.com/v3/"></script>
-
-<!-- FAQ JSON-LD -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {"@type":"Question","name":"Horario de atención","acceptedAnswer":{"@type":"Answer","text":"Lunes a viernes de 9:00 a 18:00. Contacta por correo con nuestro formulario."}},
-    {"@type":"Question","name":"Consultar estado de solicitud","acceptedAnswer":{"@type":"Answer","text":"Accede a 'Ver estado de solicitud', introduce tu email y matrícula, y descarga tus informes."}},
-    {"@type":"Question","name":"Tipos de informes","acceptedAnswer":{"@type":"Answer","text":"Informes de cargas, embargos, titularidad, historial de kilometraje y datos oficiales de la DGT."}},
-    {"@type":"Question","name":"Plazo de entrega","acceptedAnswer":{"@type":"Answer","text":"Informe Rápido: pocas horas. Informe Urgente: entrega inmediata."}},
-    {"@type":"Question","name":"Más dudas","acceptedAnswer":{"@type":"Answer","text":"Contáctanos por correo: contacto@informevehiculodgt.es"}}
-  ]
-}
-</script>
-
 <style>
-body { font-family: Arial, sans-serif; margin:0; background:#fff; color:#000; }
-header { background:#003366; color:#fff; padding:30px 20px; text-align:center; }
-h1 { margin:0; font-size:2.2em; }
-.highlight { font-size:1.2em; color:#ff6600; font-weight:bold; display:block; margin-top:10px; }
-.container { max-width:1000px; margin:20px auto; padding:20px; }
-.form-section { display:flex; flex-wrap:wrap; gap:10px; margin-bottom:30px; justify-content:center; }
-.form-section input { padding:14px; font-size:16px; flex:1 1 40%; min-width:200px; border:1px solid #003366; border-radius:4px; }
-.products { display:flex; gap:20px; flex-wrap:wrap; justify-content:center; margin-bottom:40px; }
-.product-card { border:2px solid #003366; border-radius:10px; padding:30px; text-align:center; flex:1 1 300px; min-width:280px; transition: transform 0.4s, box-shadow 0.4s; position:relative; background:#f7f9fc; }
-.product-card:hover { transform: translateY(-10px); box-shadow: 0 10px 30px rgba(0,0,0,0.25); }
-.product-card h3 { margin:10px 0; color:#003366; display:flex; align-items:center; justify-content:center; gap:10px; }
-.product-card p { margin:10px 0 20px 0; font-size:1em; }
-button.pay { background:#003366; color:#fff; border:none; padding:16px 25px; font-size:18px; cursor:pointer; border-radius:6px; transition: all 0.3s; }
-button.pay:hover { background:#ff6600; transform: scale(1.05); }
-.vehicle-icon { width:30px; height:30px; }
-footer { margin-top:40px; font-size:12px; color:#666; text-align:center; padding-bottom:20px; }
-
-.faq-section { margin-top:40px; background:#f9f9f9; padding:20px; border-radius:10px; }
-.faq-section h2 { color:#003366; }
-.faq-item { margin-bottom:15px; }
-.faq-item p { margin:5px 0; }
-.contact-section { margin-top:30px; text-align:center; }
-.contact-section a { color:#003366; text-decoration:none; font-weight:bold; }
-.contact-section a:hover { text-decoration:underline; }
-
-.urgency { background:#ff6600; color:#fff; font-weight:bold; padding:10px; border-radius:6px; display:inline-block; margin-bottom:20px; }
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #fff;
+  color: #000;
+}
+header {
+  background: #003366;
+  color: #fff;
+  padding: 30px 20px;
+  text-align: center;
+}
+h1 {
+  margin: 0;
+  font-size: 2.2em;
+}
+.highlight {
+  font-size: 1.2em;
+  color: #ff6600;
+  font-weight: bold;
+  margin-top: 10px;
+  display: block;
+}
+.container {
+  max-width: 1000px;
+  margin: 20px auto;
+  padding: 20px;
+}
+.form-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 30px;
+  justify-content: center;
+}
+.form-section input {
+  padding: 14px;
+  font-size: 16px;
+  flex: 1 1 40%;
+  min-width: 200px;
+  border: 1px solid #003366;
+  border-radius: 4px;
+}
+.products {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+.product-card {
+  border: 2px solid #003366;
+  border-radius: 10px;
+  padding: 30px;
+  text-align: center;
+  flex: 1 1 300px;
+  min-width: 280px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  position: relative;
+}
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 25px rgba(0,0,0,0.3);
+}
+.product-card h3 {
+  margin: 10px 0;
+  color: #003366;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.product-card p {
+  margin: 10px 0 20px 0;
+  font-size: 1em;
+}
+button.pay {
+  background: #003366;
+  color: #fff;
+  border: none;
+  padding: 16px 25px;
+  font-size: 18px;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background 0.3s;
+}
+button.pay:hover {
+  background: #0055aa;
+}
+.vehicle-icon {
+  width: 30px;
+  height: 30px;
+}
+.price-old {
+  text-decoration: line-through;
+  color: #999;
+  margin-right: 8px;
+}
+.discount-label {
+  color: #ff6600;
+  font-weight: bold;
+}
+footer {
+  margin-top: 40px;
+  font-size: 12px;
+  color: #666;
+  text-align: center;
+  padding-bottom: 20px;
+}
+.faq-section {
+  max-width: 900px;
+  margin: 0 auto 40px auto;
+}
+.faq-section h2 {
+  color: #003366;
+  margin-bottom: 15px;
+}
+.faq-section h3 {
+  margin: 15px 0 5px 0;
+}
+.faq-section p {
+  margin: 0 0 10px 0;
+}
 </style>
 </head>
-
 <body>
 
 <header>
@@ -68,9 +140,6 @@ footer { margin-top:40px; font-size:12px; color:#666; text-align:center; padding
 </header>
 
 <div class="container">
-  <!-- Contador de urgencia -->
-  <div class="urgency" id="urgencyTimer">Oferta válida por <span id="minutes">15</span>:<span id="seconds">00</span> minutos</div>
-
   <h2>Introduce tus datos</h2>
   <div class="form-section">
     <input type="text" id="matricula" placeholder="Matrícula">
@@ -80,59 +149,70 @@ footer { margin-top:40px; font-size:12px; color:#666; text-align:center; padding
   <h2>Selecciona el tipo de informe</h2>
   <div class="products">
     <div class="product-card">
-      <h3><img src="/favicon.png" class="vehicle-icon" alt="vehículo">Informe Vehículo Rápido</h3>
+      <h3>
+        <img src="favicon.png" class="vehicle-icon" alt="vehículo">
+        Informe Vehículo Rápido
+      </h3>
       <p>Entrega en pocas horas</p>
-      <p><strong>25 €</strong></p>
+      <p><span class="price-old">35 €</span> <span class="discount-label">25 €</span></p>
       <button class="pay" onclick="goToStripe('25')">Solicitar Informe</button>
     </div>
+
     <div class="product-card">
-      <h3><img src="/favicon.png" class="vehicle-icon" alt="vehículo">Informe Vehículo Urgente</h3>
+      <h3>
+        <img src="favicon.png" class="vehicle-icon" alt="vehículo">
+        Informe Vehículo Urgente
+      </h3>
       <p>Entrega inmediata</p>
-      <p><strong>29 €</strong></p>
+      <p><span class="price-old">39 €</span> <span class="discount-label">29 €</span></p>
       <button class="pay" onclick="goToStripe('29')">Solicitar Informe</button>
     </div>
   </div>
 
   <!-- FAQ -->
   <div class="faq-section">
-    <h2>Preguntas frecuentes sobre informes DGT</h2>
-    <div class="faq-item"><strong>Horario de atención:</strong><p>Lunes a Viernes de 9:00 a 18:00. Contáctanos por correo: <a href="mailto:contacto@informevehiculodgt.es">contacto@informevehiculodgt.es</a>.</p></div>
-    <div class="faq-item"><strong>Consultar estado:</strong><p>Accede a 'Ver estado de solicitud', introduce tu email y matrícula para ver el progreso y descargar informes.</p></div>
-    <div class="faq-item"><strong>Tipos de informes:</strong><p>Cargas, embargos, titularidad, historial de kilometraje y datos oficiales de DGT.</p></div>
-    <div class="faq-item"><strong>Plazo de entrega:</strong><p>Informe Rápido: pocas horas. Informe Urgente: entrega inmediata.</p></div>
-    <div class="faq-item"><strong>Más dudas:</strong><p>Contacta por correo: <a href="mailto:contacto@informevehiculodgt.es">contacto@informevehiculodgt.es</a></p></div>
+    <h2>Preguntas Frecuentes</h2>
+    <h3>Horario de atención</h3>
+    <p>Lunes a Viernes de 9:00 a 18:00</p>
+    <p>Te atendemos por correo a través del formulario de contacto: <strong>info@informevehiculodgt.es</strong></p>
+
+    <h3>¿Cómo consulto el estado de mi solicitud?</h3>
+    <p>Entra en "Ver estado de solicitud", introduce tu correo y la matrícula del vehículo. Podrás ver el estado de cada solicitud y descargar los documentos cuando estén listos.</p>
+
+    <h3>¿Qué trámites puedo solicitar?</h3>
+    <p>Solicita informes de cargas, embargos, titularidad y kilometraje de vehículos de segunda mano.</p>
+
+    <h3>¿Cuál es el plazo de entrega?</h3>
+    <p>Depende del tipo de informe: rápido (pocas horas) o urgente (entrega inmediata).</p>
+
+    <h3>¿Más dudas?</h3>
+    <p>Contacta con nosotros a través de <strong>info@informevehiculodgt.es</strong>.</p>
   </div>
 </div>
 
 <footer>
-  <p>Pagos seguros con Stripe. Tus datos se usan solo para generar el informe y no se comparten con terceros.</p>
+  <p>Política de Privacidad: Tu información (matrícula y email) se usa solo para generar el informe y procesar pagos seguros mediante Stripe. No compartimos tus datos con terceros.</p>
 </footer>
 
+<!-- Stripe.js -->
+<script src="https://js.stripe.com/v3/"></script>
 <script>
-const stripeR = "https://buy.stripe.com/dRm6oH9571ox1Ila8ugrS00";
-const stripeU = "https://buy.stripe.com/bJeaEX4OR9V3fzb1BYgrS01";
+const stripeR = "https://buy.stripe.com/dRm6oH9571ox1Ila8ugrS00"; // 25€
+const stripeU = "https://buy.stripe.com/bJeaEX4OR9V3fzb1BYgrS01"; // 29€
 
 function goToStripe(price) {
   const matricula = document.getElementById('matricula').value.trim();
   const email = document.getElementById('email').value.trim();
-  if (!matricula || !email) { alert('Por favor completa matrícula y email.'); return; }
-  if (price==='25') window.location.href=stripeR;
-  else if (price==='29') window.location.href=stripeU;
+  if (!matricula || !email) {
+    alert('Por favor, completa matrícula y email antes de continuar.');
+    return;
+  }
+  if (price === '25') {
+    window.location.href = stripeR;
+  } else if (price === '29') {
+    window.location.href = stripeU;
+  }
 }
-
-// Contador de urgencia 15 minutos
-let totalSeconds = 15 * 60;
-const minutesSpan = document.getElementById('minutes');
-const secondsSpan = document.getElementById('seconds');
-
-setInterval(() => {
-  if (totalSeconds <=0) return;
-  totalSeconds--;
-  let mins = Math.floor(totalSeconds/60);
-  let secs = totalSeconds%60;
-  minutesSpan.textContent = String(mins).padStart(2,'0');
-  secondsSpan.textContent = String(secs).padStart(2,'0');
-},1000);
 </script>
 
 </body>
