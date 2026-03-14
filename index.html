@@ -1,334 +1,132 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Informes completos de vehículos en España | InformeVehículoDGT</title>
+<meta name="description" content="Solicita informes completos de cualquier vehículo matriculado en España: coches, motos, furgonetas, camiones, autobuses, híbridos y eléctricos. Conoce cargas, historial de ITV, kilometraje, titular y más antes de comprar.">
+<link rel="icon" href="favicon.png" type="image/png">
 
-<title>Informe Vehículo DGT por Matrícula | Historial coche, moto o furgoneta</title>
+<!-- SEO Social Media -->
+<meta property="og:title" content="Informes completos de vehículos en España | InformeVehículoDGT">
+<meta property="og:description" content="Solicita informes completos de cualquier vehículo matriculado en España: coches, motos, furgonetas, camiones, autobuses, híbridos y eléctricos.">
+<meta property="og:image" content="favicon.png">
+<meta property="og:type" content="website">
 
-<meta name="description" content="Solicita el informe completo de cualquier vehículo matriculado en España. Consulta historial, cargas, ITV, kilometraje y titulares antes de comprar coche, moto, furgoneta, camión o autocaravana.">
-
-<link rel="icon" type="image/png" href="/favicon.png">
+<!-- Schema.org para producto/informe -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Informe completo de vehículos",
+  "image": "favicon.png",
+  "description": "Solicita informes completos de cualquier vehículo matriculado en España con todos los datos técnicos, cargas, historial de ITV y mantenimiento.",
+  "brand": {
+    "@type": "Organization",
+    "name": "InformeVehículoDGT"
+  },
+  "offers": {
+    "@type": "Offer",
+    "url": "https://buy.stripe.com/dRm6oH9571ox1Ila8ugrS00",
+    "priceCurrency": "EUR",
+    "price": "25",
+    "availability": "https://schema.org/InStock"
+  }
+}
+</script>
 
 <style>
-
-body{
-font-family:Arial;
-margin:0;
-background:#ffffff;
-color:#000;
-}
-
-header{
-background:#003366;
-color:white;
-text-align:center;
-padding:40px 20px;
-}
-
-h1{
-margin:0;
-font-size:2.4em;
-}
-
-.highlight{
-color:#ff6600;
-font-size:1.2em;
-margin-top:10px;
-display:block;
-}
-
-.container{
-max-width:1000px;
-margin:auto;
-padding:20px;
-}
-
-.form-section{
-display:flex;
-flex-wrap:wrap;
-gap:10px;
-justify-content:center;
-margin-bottom:30px;
-}
-
-.form-section input{
-padding:14px;
-font-size:16px;
-flex:1 1 40%;
-border:1px solid #003366;
-border-radius:4px;
-}
-
-.products{
-display:flex;
-justify-content:center;
-margin-bottom:40px;
-}
-
-.product-card{
-border:2px solid #003366;
-border-radius:10px;
-padding:30px;
-text-align:center;
-width:320px;
-}
-
-.price{
-font-size:1.6em;
-font-weight:bold;
-color:#003366;
-}
-
-.old-price{
-text-decoration:line-through;
-color:#999;
-margin-right:10px;
-}
-
-button.pay{
-background:#ff6600;
-color:white;
-border:none;
-padding:16px 30px;
-font-size:18px;
-border-radius:6px;
-cursor:pointer;
-}
-
-button.pay:hover{
-background:#e65c00;
-}
-
-.timer{
-color:red;
-font-weight:bold;
-font-size:1.1em;
-margin-top:10px;
-}
-
-.benefits{
-background:#f5f5f5;
-padding:20px;
-border-radius:8px;
-margin-bottom:30px;
-}
-
-.benefits li{
-margin:8px 0;
-}
-
-.seo-text{
-margin-top:40px;
-line-height:1.6;
-}
-
-.faq{
-margin-top:40px;
-}
-
-footer{
-margin-top:40px;
-text-align:center;
-font-size:12px;
-color:#666;
-}
-
+body{font-family:Arial, sans-serif;margin:0;padding:0;background:#f4f4f4;color:#333;}
+header{background:#003366;color:#fff;padding:30px 20px;text-align:center;}
+header h1{margin:0;font-size:2.5em;}
+header p{margin-top:10px;font-size:1.2em;}
+.container{max-width:1000px;margin:auto;padding:20px;background:#fff;border-radius:10px;box-shadow:0 4px 15px rgba(0,0,0,0.1);}
+h2,h3{color:#003366;}
+p{line-height:1.6;font-size:1em;}
+.button{display:inline-block;background:#ff6600;color:#fff;padding:18px 30px;text-decoration:none;border-radius:8px;font-weight:bold;margin-top:20px;font-size:1.2em;transition:0.3s;}
+.button:hover{background:#e65c00;}
+.old-price{text-decoration:line-through;color:#999;margin-right:10px;font-size:1.2em;}
+.price{font-size:2em;color:#003366;font-weight:bold;}
+.faq{margin-top:40px;}
+.faq h2{margin-bottom:10px;}
+.faq p{margin:5px 0;}
+.counter{font-size:1.5em;color:#d40000;font-weight:bold;}
+footer{text-align:center;color:#666;font-size:0.9em;margin-top:40px;padding-bottom:20px;}
 </style>
-</head>
 
+<!-- Contador de urgencia -->
+<script>
+function startCountdown(duration, display) {
+    let timer = duration, days, hours, minutes, seconds;
+    setInterval(function () {
+        days = Math.floor(timer / 86400);
+        hours = Math.floor((timer % 86400) / 3600);
+        minutes = Math.floor((timer % 3600) / 60);
+        seconds = Math.floor(timer % 60);
+        display.textContent = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+        if (--timer < 0) { timer = 0; }
+    }, 1000);
+}
+window.onload = function () {
+    let countdownDuration = 24*60*60; // 24 horas de oferta
+    let display = document.querySelector('#countdown');
+    startCountdown(countdownDuration, display);
+};
+</script>
+
+</head>
 <body>
 
 <header>
-
-<h1>Informe Vehículo DGT</h1>
-
-<span class="highlight">
-Comprueba el historial de cualquier vehículo antes de comprar
-</span>
-
+<h1>InformeVehículoDGT</h1>
+<p>Informes completos de cualquier vehículo matriculado en España</p>
 </header>
 
 <div class="container">
-
-<h2>Introduce matrícula y email</h2>
-
-<div class="form-section">
-
-<input type="text" id="matricula" placeholder="Matrícula del vehículo">
-
-<input type="email" id="email" placeholder="Correo electrónico">
-
-</div>
-
-<div class="products">
-
-<div class="product-card">
-
-<h3>Informe Completo</h3>
-
-<p>Entrega rápida</p>
-
-<p class="price">
+<h2>Oferta limitada: Solo 25 €</h2>
+<p>
 <span class="old-price">39 €</span>
-25 €
+<span class="price">25 €</span>
 </p>
+<p class="counter">¡Oferta válida durante: <span id="countdown"></span></p>
+<a href="https://buy.stripe.com/dRm6oH9571ox1Ila8ugrS00" class="button">Solicitar Informe Ahora</a>
 
-<p class="timer" id="countdown"></p>
-
-<button class="pay" onclick="goToStripe()">Solicitar informe</button>
-
-</div>
-
-</div>
-
-
-<div class="benefits">
-
-<h3>Qué incluye el informe</h3>
-
+<h2>Tipos de vehículos disponibles</h2>
 <ul>
-
-<li>✔ Informe completo con información administrativa</li>
-
-<li>✔ Comprobación de cargas, embargos o precintos</li>
-
-<li>✔ Historial de ITV del vehículo</li>
-
-<li>✔ Kilometraje registrado</li>
-
-<li>✔ Número de titulares anteriores</li>
-
-<li>✔ Datos técnicos del vehículo</li>
-
-<li>✔ Información de mantenimiento y revisiones</li>
-
-<li>✔ Consulta válida para coches, motos, furgonetas, camiones, autobuses o autocaravanas</li>
-
+<li>Coches</li>
+<li>Motos y ciclomotores</li>
+<li>Furgonetas y camionetas</li>
+<li>Autocaravanas</li>
+<li>Camiones</li>
+<li>Autobuses</li>
+<li>Vehículos eléctricos e híbridos</li>
+<li>Maquinaria y motores</li>
+<li>Remolques</li>
 </ul>
 
-</div>
-
-
-<div class="seo-text">
-
-<h2>Consulta el informe de cualquier vehículo por matrícula</h2>
-
-<p>
-
-Antes de comprar un vehículo de segunda mano es recomendable comprobar su situación administrativa y técnica. Mediante el informe completo del vehículo es posible consultar información relevante como el historial de inspecciones técnicas (ITV), el número de titulares anteriores, el kilometraje registrado o posibles cargas administrativas o judiciales.
-
-</p>
-
-<p>
-
-Este tipo de consulta puede realizarse para cualquier vehículo matriculado en España: coches, motocicletas, ciclomotores, furgonetas, camiones, autobuses, autocaravanas u otros vehículos registrados.
-
-</p>
-
-<p>
-
-Consultar el informe antes de comprar un vehículo permite detectar posibles incidencias como embargos, precintos o irregularidades administrativas, evitando problemas posteriores en la compra.
-
-</p>
-
-</div>
-
-
 <div class="faq">
+<h2>Preguntas Frecuentes</h2>
+<p><strong>Horario de atención:</strong> Lunes a Viernes de 9:00 a 18:00</p>
+<p>Te atendemos por correo a través del formulario de contacto.</p>
 
-<h2>Preguntas frecuentes</h2>
+<p><strong>¿Cómo consulto el estado de mi solicitud?</strong><br>
+Entra en Ver estado de solicitud, introduce tu correo y la matrícula del vehículo. Verás el estado de cada solicitud y podrás descargar los documentos cuando estén listos.</p>
 
-<p><b>Horario de atención</b></p>
+<p><strong>¿Qué trámites puedo solicitar?</strong><br>
+Solicita informes completos de vehículos, datos técnicos, cargas, historial de ITV, mantenimiento y más.</p>
 
-<p>Lunes a Viernes de 9:00 a 18:00</p>
+<p><strong>¿Cuál es el plazo de entrega?</strong><br>
+Entrega inmediata tras la compra.</p>
 
-<p>Atención por correo electrónico:</p>
-
-<p>
-<a href="mailto:info@informevehiculodgt.es">
-info@informevehiculodgt.es
-</a>
-</p>
-
-<p><b>¿Qué vehículos se pueden consultar?</b></p>
-
-<p>
-
-Se pueden solicitar informes de cualquier vehículo matriculado en España: coches, motos, furgonetas, camiones, autobuses o autocaravanas.
-
-</p>
-
-<p><b>¿Para qué sirve el informe?</b></p>
-
-<p>
-
-Permite conocer la situación administrativa del vehículo, comprobar posibles cargas o embargos y revisar su historial técnico antes de realizar una compra.
-
-</p>
-
-<p><b>¿Cuál es el plazo de entrega?</b></p>
-
-<p>
-
-Los informes se entregan normalmente en pocas horas tras la solicitud.
-
-</p>
-
+<p><strong>¿Más dudas?</strong><br>
+Contacta con nosotros a <a href="mailto:info@informevehiculodgt.es">info@informevehiculodgt.es</a>.</p>
 </div>
 
 </div>
 
 <footer>
-
-<p>
-
-La información introducida se utiliza únicamente para gestionar la solicitud del informe.
-
-</p>
-
+<p>&copy; 2026 InformeVehículoDGT. Todos los derechos reservados.</p>
 </footer>
-
-
-<script>
-
-const stripeURL = "https://buy.stripe.com/dRm6oH9571ox1Ila8ugrS00";
-
-function goToStripe(){
-
-let matricula=document.getElementById("matricula").value;
-let email=document.getElementById("email").value;
-
-if(matricula==""||email==""){
-
-alert("Introduce matrícula y email");
-
-return;
-
-}
-
-window.location.href=stripeURL;
-
-}
-
-let countdownDate = new Date().getTime() + 3600000;
-
-setInterval(function(){
-
-let now=new Date().getTime();
-
-let distance=countdownDate-now;
-
-let minutes=Math.floor((distance%(1000*60*60))/(1000*60));
-
-let seconds=Math.floor((distance%(1000*60))/1000);
-
-document.getElementById("countdown").innerHTML="Oferta limitada: "+minutes+"m "+seconds+"s";
-
-},1000);
-
-</script>
 
 </body>
 </html>
