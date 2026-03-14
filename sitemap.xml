@@ -1,22 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-<url>
-<loc>https://informevehiculodgt.es/</loc>
-<priority>1.0</priority>
-</url>
-
-<url>
-<loc>https://informevehiculodgt.es/gracias.html</loc>
-</url>
-
-<url>
-<loc>https://informevehiculodgt.es/comprobar-vehiculo-por-matricula.html</loc>
-</url>
-
-<url>
-<loc>https://informevehiculodgt.es/como-saber-si-un-coche-tiene-cargas.html</loc>
-</url>
+<url><loc>https://informevehiculodgt.es/</loc></url>
+<url><loc>https://informevehiculodgt.es/coches.html</loc></url>
+<url><loc>https://informevehiculodgt.es/motos.html</loc></url>
+<url><loc>https://informevehiculodgt.es/furgonetas.html</loc></url>
+<url><loc>https://informevehiculodgt.es/camiones.html</loc></url>
+<url><loc>https://informevehiculodgt.es/autocaravanas.html</loc></url>
+<url><loc>https://informevehiculodgt.es/autobuses.html</loc></url>
+<url><loc>https://informevehiculodgt.es/tractores.html</loc></url>
+<url><loc>https://informevehiculodgt.es/maquinaria-agricola.html</loc></url>
+<url><loc>https://informevehiculodgt.es/remolques.html</loc></url>
+<url><loc>https://informevehiculodgt.es/ciclomotores.html</loc></url>
+<url><loc>https://informevehiculodgt.es/cuadriciclos.html</loc></url>
+<url><loc>https://informevehiculodgt.es/microcoches.html</loc></url>
+<url><loc>https://informevehiculodgt.es/camionetas.html</loc></url>
+<url><loc>https://informevehiculodgt.es/vehiculos-electricos.html</loc></url>
+<url><loc>https://informevehiculodgt.es/vehiculos-hibridos.html</loc></url>
+<url><loc>https://informevehiculodgt.es/vehiculos-especiales.html</loc></url>
+<url><loc>https://informevehiculodgt.es/comprobar-vehiculo-por-matricula.html</loc></url>
+<url><loc>https://informevehiculodgt.es/como-saber-si-un-coche-tiene-cargas.html</loc></url>
 
 </urlset>
