@@ -3,10 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Informe Vehículo DGT</title>
+<title>Informe Vehículo DGT | Comprobar coche antes de comprar</title>
+<meta name="description" content="Obtén tu informe de vehículo DGT al instante. Comprueba cargas, embargos, kilometraje y titular antes de comprar un coche de segunda mano.">
 
 <!-- Favicon -->
-<link rel="icon" href="favicon.png" type="image/png">
+<link rel="icon" type="image/png" href="/favicon.png">
 
 <style>
 body {
@@ -25,10 +26,12 @@ h1 {
   margin: 0;
   font-size: 2.2em;
 }
-h2 {
-  color: #003366;
-  margin-top: 30px;
-  font-size: 1.5em;
+.highlight {
+  font-size: 1.2em;
+  color: #ff6600;
+  font-weight: bold;
+  margin-top: 10px;
+  display: block;
 }
 .container {
   max-width: 1000px;
@@ -65,17 +68,22 @@ h2 {
   flex: 1 1 300px;
   min-width: 280px;
   transition: transform 0.3s, box-shadow 0.3s;
+  position: relative;
 }
 .product-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+  box-shadow: 0 6px 25px rgba(0,0,0,0.3);
 }
 .product-card h3 {
-  margin: 0 0 10px 0;
+  margin: 10px 0;
   color: #003366;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }
 .product-card p {
-  margin: 0 0 20px 0;
+  margin: 10px 0 20px 0;
   font-size: 1em;
 }
 button.pay {
@@ -91,6 +99,10 @@ button.pay {
 button.pay:hover {
   background: #0055aa;
 }
+.vehicle-icon {
+  width: 30px;
+  height: 30px;
+}
 footer {
   margin-top: 40px;
   font-size: 12px;
@@ -104,7 +116,7 @@ footer {
 
 <header>
   <h1>Informe Vehículo DGT</h1>
-  <p><strong>Evita sorpresas al comprar un vehículo de segunda mano</strong></p>
+  <span class="highlight">Evita sorpresas al comprar un vehículo de segunda mano</span>
 </header>
 
 <div class="container">
@@ -117,14 +129,20 @@ footer {
   <h2>Selecciona el tipo de informe</h2>
   <div class="products">
     <div class="product-card">
-      <h3>Informe Vehículo Rápido</h3>
+      <h3>
+        <img src="favicon.png" class="vehicle-icon" alt="vehículo">
+        Informe Vehículo Rápido
+      </h3>
       <p>Entrega en pocas horas</p>
       <p><strong>25 €</strong></p>
       <button class="pay" onclick="goToStripe('25')">Solicitar Informe</button>
     </div>
 
     <div class="product-card">
-      <h3>Informe Vehículo Urgente</h3>
+      <h3>
+        <img src="favicon.png" class="vehicle-icon" alt="vehículo">
+        Informe Vehículo Urgente
+      </h3>
       <p>Entrega inmediata</p>
       <p><strong>29 €</strong></p>
       <button class="pay" onclick="goToStripe('29')">Solicitar Informe</button>
@@ -149,7 +167,6 @@ function goToStripe(price) {
     alert('Por favor, completa matrícula y email antes de continuar.');
     return;
   }
-  // Aquí podrías enviar matrícula/email a tu servidor si quieres guardarlos
   if (price === '25') {
     window.location.href = stripeR;
   } else if (price === '29') {
