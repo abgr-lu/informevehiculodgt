@@ -97,7 +97,24 @@ h1 {
   margin-right: 10px;
 }
 button.pay {
-  display: none; /* Ocultamos botón ya que solo habrá 1 informe y no queremos redirección por ahora */
+  background: #ff6600;
+  color: #fff;
+  font-size: 1.2em;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+button.pay:hover {
+  background: #e65c00;
+}
+.countdown {
+  font-size: 1.3em;
+  color: red;
+  font-weight: bold;
+  margin-bottom: 15px;
 }
 .faq {
   margin-top: 40px;
@@ -141,48 +158,76 @@ a.email-link:hover {
     <input type="email" id="email" placeholder="Email">
   </div>
 
-  <h2>Informe completo</h2>
+  <h2>Oferta limitada</h2>
   <div class="products">
     <div class="product-card">
       <h3>Informe Vehículo Completo</h3>
-      <p>Entrega en pocas horas</p>
+      <p>Entrega inmediata</p>
       <p>
         <span class="old-price">39 €</span>
         <span class="price">25 €</span>
       </p>
+      <div class="countdown" id="countdown"></div>
+      <button class="pay" onclick="alert('Redirigir a pago o formulario de solicitud')">Solicitar Informe</button>
     </div>
   </div>
 
   <div class="info-text">
     <h2>¿Qué incluye el informe completo?</h2>
-    <p>Puedes solicitar un <strong>informe completo de cualquier vehículo matriculado en España</strong>, con información pública y actualizada. Ideal para comprar un coche de segunda mano y asegurarte de que todo está en regla.</p>
+    <p>Solicita un <strong>informe completo de cualquier vehículo matriculado en España</strong>, con información pública y actualizada. Ideal para comprar un coche de segunda mano y asegurarte de que todo está en regla.</p>
     <ul>
       <li><strong>Información administrativa:</strong> titular actual, municipio y número de titulares anteriores.</li>
       <li><strong>Historial de ITV:</strong> vigencia de inspección técnica, revisiones y reparaciones en talleres oficiales.</li>
       <li><strong>Datos técnicos:</strong> kilometraje, características, puntuación EuroNCAP, llamadas a revisión pendientes.</li>
       <li><strong>Cargas y restricciones:</strong> embargos, precintos u otras cargas administrativas o judiciales.</li>
     </ul>
-    <p>Solicitar este informe te permite tomar decisiones informadas y <strong>evitar sorpresas ocultas</strong> antes de comprar un vehículo.</p>
+    <p>Con este informe podrás tomar decisiones informadas y <strong>evitar sorpresas ocultas</strong> antes de comprar un vehículo.</p>
   </div>
 
   <div class="faq">
     <h2>Preguntas frecuentes</h2>
     <p><strong>Horario de atención:</strong> Lunes a Viernes de 9:00 a 18:00</p>
-    <p>Te atendemos por correo a través del formulario de contacto: <a href="mailto:info@informevehiculodgt.es" class="email-link">info@informevehiculodgt.es</a></p>
+    <p>Te atendemos por correo: <a href="mailto:info@informevehiculodgt.es" class="email-link">info@informevehiculodgt.es</a></p>
     <p><strong>¿Cómo consulto el estado de mi solicitud?</strong></p>
-    <p>Entra en <em>Ver estado de solicitud</em>, introduce tu correo y la matrícula del vehículo. Podrás ver el estado de cada una de tus solicitudes y descargar los documentos cuando estén listos.</p>
+    <p>Entra en <em>Ver estado de solicitud</em>, introduce tu correo y la matrícula. Podrás ver el estado de cada solicitud y descargar los documentos.</p>
     <p><strong>¿Qué trámites puedo solicitar?</strong></p>
-    <p>Dispones de varios tipos de informes con información pública, siendo el completo el más recomendado.</p>
+    <p>Dispones de informes con información pública, siendo el completo el más recomendado.</p>
     <p><strong>¿Cuál es el plazo de entrega?</strong></p>
-    <p>Entrega en pocas horas para la versión completa.</p>
+    <p>Entrega en pocas horas para el informe completo.</p>
     <p><strong>¿Más dudas?</strong> Contacta con nosotros vía correo electrónico.</p>
   </div>
 
 </div>
 
 <footer>
-  <p>Política de privacidad: Tu información (matrícula y email) se usa solo para generar el informe y procesar pagos seguros mediante Stripe. No compartimos tus datos con terceros.</p>
+  <p>Política de privacidad: Tu información (matrícula y email) se usa solo para generar el informe y procesar pagos seguros. No compartimos tus datos con terceros.</p>
 </footer>
+
+<script>
+// Contador de urgencia de 24 horas
+let countdownDate = new Date();
+countdownDate.setHours(countdownDate.getHours() + 24);
+
+function updateCountdown() {
+  let now = new Date().getTime();
+  let distance = countdownDate - now;
+
+  if(distance < 0) {
+    document.getElementById("countdown").innerHTML = "Oferta finalizada";
+    document.querySelector(".pay").disabled = true;
+    return;
+  }
+
+  let hours = Math.floor((distance % (1000 * 60 * 60 * 24))/(1000*60*60));
+  let minutes = Math.floor((distance % (1000 * 60 * 60))/(1000*60));
+  let seconds = Math.floor((distance % (1000 * 60))/1000);
+
+  document.getElementById("countdown").innerHTML = `¡Oferta válida por: ${hours}h ${minutes}m ${seconds}s!`;
+}
+
+setInterval(updateCountdown, 1000);
+updateCountdown();
+</script>
 
 </body>
 </html>
