@@ -3,9 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Informe Vehículo DGT | Comprueba coches de segunda mano</title>
+<title>Informe Vehículo DGT | Comprobar coche antes de comprar</title>
 <meta name="description" content="Obtén tu informe de vehículo DGT al instante. Comprueba cargas, embargos, kilometraje y titular antes de comprar un coche de segunda mano.">
-<link rel="icon" type="image/png" href="/favicon.png">
+
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="favicon.png">
+
 <style>
 body {
   font-family: Arial, sans-serif;
@@ -18,17 +21,25 @@ header {
   color: #fff;
   padding: 30px 20px;
   text-align: center;
+  position: relative;
 }
-h1 {
-  margin: 0;
-  font-size: 2.2em;
-}
+h1 { margin: 0; font-size: 2.2em; }
 .highlight {
   font-size: 1.2em;
   color: #ff6600;
   font-weight: bold;
   margin-top: 10px;
   display: block;
+}
+.countdown {
+  font-size: 1em;
+  color: #fff;
+  background: #ff6600;
+  padding: 5px 10px;
+  border-radius: 5px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
 }
 .container {
   max-width: 1000px;
@@ -83,6 +94,11 @@ h1 {
   margin: 10px 0 20px 0;
   font-size: 1em;
 }
+.old-price {
+  text-decoration: line-through;
+  color: #888;
+  margin-right: 10px;
+}
 button.pay {
   background: #003366;
   color: #fff;
@@ -96,40 +112,20 @@ button.pay {
 button.pay:hover {
   background: #0055aa;
 }
-.vehicle-icon {
-  width: 30px;
-  height: 30px;
-}
-.price-old {
-  text-decoration: line-through;
-  color: #999;
-  margin-right: 8px;
-}
-.discount-label {
-  color: #ff6600;
-  font-weight: bold;
-}
+.vehicle-icon { width: 30px; height: 30px; }
+.faq { margin-top: 50px; }
+.faq h2 { color: #003366; margin-bottom: 10px; }
+.faq-item { margin-bottom: 15px; }
+.faq-item p { margin: 5px 0; }
 footer {
   margin-top: 40px;
-  font-size: 12px;
+  font-size: 14px;
   color: #666;
   text-align: center;
   padding-bottom: 20px;
 }
-.faq-section {
-  max-width: 900px;
-  margin: 0 auto 40px auto;
-}
-.faq-section h2 {
-  color: #003366;
-  margin-bottom: 15px;
-}
-.faq-section h3 {
-  margin: 15px 0 5px 0;
-}
-.faq-section p {
-  margin: 0 0 10px 0;
-}
+a { color: #003366; text-decoration: none; }
+a:hover { text-decoration: underline; }
 </style>
 </head>
 <body>
@@ -137,56 +133,59 @@ footer {
 <header>
   <h1>Informe Vehículo DGT</h1>
   <span class="highlight">Evita sorpresas al comprar un vehículo de segunda mano</span>
+  <div class="countdown" id="countdown">Oferta limitada: 48h</div>
 </header>
 
 <div class="container">
   <h2>Introduce tus datos</h2>
-  <div class="form-section">
-    <input type="text" id="matricula" placeholder="Matrícula">
-    <input type="email" id="email" placeholder="Email">
-  </div>
+  <form action="https://formspree.io/f/xxxxx" method="POST" class="form-section">
+    <input type="text" name="matricula" placeholder="Matrícula" required>
+    <input type="email" name="email" placeholder="Email" required>
+    <input type="hidden" name="_subject" value="Nueva solicitud de informe">
+    <button type="submit" class="pay">Enviar y solicitar informe</button>
+  </form>
 
   <h2>Selecciona el tipo de informe</h2>
   <div class="products">
     <div class="product-card">
       <h3>
-        <img src="favicon.png" class="vehicle-icon" alt="vehículo">
-        Informe Vehículo Rápido
+        <img src="favicon.png" class="vehicle-icon" alt="vehículo"> Informe Vehículo Rápido
       </h3>
       <p>Entrega en pocas horas</p>
-      <p><span class="price-old">35 €</span> <span class="discount-label">25 €</span></p>
+      <p><span class="old-price">35 €</span> <strong>25 €</strong></p>
       <button class="pay" onclick="goToStripe('25')">Solicitar Informe</button>
     </div>
-
     <div class="product-card">
       <h3>
-        <img src="favicon.png" class="vehicle-icon" alt="vehículo">
-        Informe Vehículo Urgente
+        <img src="favicon.png" class="vehicle-icon" alt="vehículo"> Informe Vehículo Urgente
       </h3>
       <p>Entrega inmediata</p>
-      <p><span class="price-old">39 €</span> <span class="discount-label">29 €</span></p>
+      <p><span class="old-price">39 €</span> <strong>29 €</strong></p>
       <button class="pay" onclick="goToStripe('29')">Solicitar Informe</button>
     </div>
   </div>
 
-  <!-- FAQ -->
-  <div class="faq-section">
-    <h2>Preguntas Frecuentes</h2>
-    <h3>Horario de atención</h3>
-    <p>Lunes a Viernes de 9:00 a 18:00</p>
-    <p>Te atendemos por correo a través del formulario de contacto: <strong>info@informevehiculodgt.es</strong></p>
-
-    <h3>¿Cómo consulto el estado de mi solicitud?</h3>
-    <p>Entra en "Ver estado de solicitud", introduce tu correo y la matrícula del vehículo. Podrás ver el estado de cada solicitud y descargar los documentos cuando estén listos.</p>
-
-    <h3>¿Qué trámites puedo solicitar?</h3>
-    <p>Solicita informes de cargas, embargos, titularidad y kilometraje de vehículos de segunda mano.</p>
-
-    <h3>¿Cuál es el plazo de entrega?</h3>
-    <p>Depende del tipo de informe: rápido (pocas horas) o urgente (entrega inmediata).</p>
-
-    <h3>¿Más dudas?</h3>
-    <p>Contacta con nosotros a través de <strong>info@informevehiculodgt.es</strong>.</p>
+  <div class="faq">
+    <h2>Preguntas frecuentes</h2>
+    <div class="faq-item">
+      <p><strong>Horario de atención:</strong> Lunes a Viernes de 9:00 a 18:00</p>
+      <p>Te atendemos por correo a través de <a href="mailto:info@informevehiculodgt.es">info@informevehiculodgt.es</a>.</p>
+    </div>
+    <div class="faq-item">
+      <p><strong>¿Cómo consulto el estado de mi solicitud?</strong></p>
+      <p>Entra en "Ver estado de solicitud", introduce tu correo y la matrícula del vehículo. Podrás ver el estado y descargar los documentos cuando estén listos.</p>
+    </div>
+    <div class="faq-item">
+      <p><strong>¿Qué trámites puedo solicitar?</strong></p>
+      <p>Puedes solicitar informes rápidos y urgentes de vehículos con todos los detalles legales y administrativos.</p>
+    </div>
+    <div class="faq-item">
+      <p><strong>¿Cuál es el plazo de entrega?</strong></p>
+      <p>Depende del tipo de informe: rápido (unas horas) o urgente (inmediato).</p>
+    </div>
+    <div class="faq-item">
+      <p><strong>¿Más dudas?</strong> Contacta con nosotros en <a href="mailto:info@informevehiculodgt.es">info@informevehiculodgt.es</a>.</p>
+    </div>
   </div>
 </div>
 
@@ -201,18 +200,24 @@ const stripeR = "https://buy.stripe.com/dRm6oH9571ox1Ila8ugrS00"; // 25€
 const stripeU = "https://buy.stripe.com/bJeaEX4OR9V3fzb1BYgrS01"; // 29€
 
 function goToStripe(price) {
-  const matricula = document.getElementById('matricula').value.trim();
-  const email = document.getElementById('email').value.trim();
+  const form = document.querySelector('.form-section');
+  const matricula = form.matricula.value.trim();
+  const email = form.email.value.trim();
   if (!matricula || !email) {
     alert('Por favor, completa matrícula y email antes de continuar.');
     return;
   }
-  if (price === '25') {
-    window.location.href = stripeR;
-  } else if (price === '29') {
-    window.location.href = stripeU;
-  }
+  if (price === '25') window.location.href = stripeR;
+  if (price === '29') window.location.href = stripeU;
 }
+
+// Contador de urgencia simple
+let hours = 48;
+const countdownEl = document.getElementById('countdown');
+setInterval(() => {
+  countdownEl.textContent = `Oferta limitada: ${hours}h`;
+  hours = hours > 0 ? hours - 1 : 0;
+}, 3600000); // se actualiza cada hora
 </script>
 
 </body>
