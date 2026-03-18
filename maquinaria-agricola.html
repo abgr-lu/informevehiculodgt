@@ -1,56 +1,94 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Informe completo de Maquinaria Agrícola | TuWeb</title>
-    <meta name="description" content="Obtén el informe completo de maquinaria agrícola: historial, revisiones, ITV y más. Información confiable para tomar decisiones seguras al comprar o vender tu equipo.">
-    <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Informe completo de Maquinaria Agrícola | TuWeb</title>
+<meta name="description" content="Obtén el informe completo de maquinaria agrícola: historial, revisiones, ITV y más. Información confiable para comprar o vender tu equipo de manera segura.">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<style>
+    /* Reset y tipografía */
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family: 'Roboto', sans-serif; background:#f5f5f5; color:#333; line-height:1.6; }
+    
+    /* Header */
+    header { background:#27ae60; color:#fff; padding:40px 20px; text-align:center; }
+    header h1 { font-size:2.2rem; }
+
+    /* Main container */
+    main { max-width:1000px; margin:30px auto; padding:0 20px; }
+
+    /* Secciones */
+    section { background:#fff; padding:25px 20px; margin-bottom:25px; border-radius:10px; box-shadow:0 3px 8px rgba(0,0,0,0.1); }
+    section h2 { color:#27ae60; margin-bottom:15px; font-size:1.5rem; }
+
+    /* Listas */
+    ul { list-style: disc inside; margin-bottom:15px; }
+    ul li { margin-bottom:8px; }
+
+    /* Párrafos */
+    p { margin-bottom:15px; }
+
+    /* Botón moderno */
+    .btn-compra { display:inline-block; background:#27ae60; color:#fff; padding:14px 30px; font-size:1.1rem; font-weight:700; border:none; border-radius:8px; cursor:pointer; transition:0.3s; text-decoration:none; text-align:center; }
+    .btn-compra:hover { background:#1e874b; }
+
+    /* Footer */
+    footer { text-align:center; padding:20px; font-size:0.9rem; color:#777; }
+
+    /* Responsive */
+    @media (max-width:600px) {
+        header h1 { font-size:1.8rem; }
+        section { padding:20px 15px; }
+        .btn-compra { width:100%; font-size:1rem; }
+    }
+</style>
 </head>
 <body>
-    <header>
-        <h1>Informe completo de Maquinaria Agrícola</h1>
-    </header>
 
-    <main>
-        <section class="introduccion">
-            <p>Con nuestro informe completo de maquinaria agrícola, tendrás toda la información que necesitas para tomar decisiones seguras. Incluye historial completo, revisiones, ITV, y mucho más.</p>
-        </section>
+<header>
+    <h1>Informe completo de Maquinaria Agrícola</h1>
+</header>
 
-        <section class="beneficios">
-            <h2>Beneficios de nuestro informe</h2>
-            <ul>
-                <li>Historial completo de la maquinaria</li>
-                <li>Verificación de ITV y revisiones</li>
-                <li>Evita sorpresas al comprar o vender</li>
-                <li>Información confiable y actualizada</li>
-            </ul>
-        </section>
+<main>
+    <section>
+        <p>Con nuestro informe completo de maquinaria agrícola, tendrás toda la información que necesitas para tomar decisiones seguras. Incluye historial completo, revisiones, ITV y mucho más.</p>
+    </section>
 
-        <section class="precio-compra">
-            <h2>Precio del informe</h2>
-            <p>Solo <strong>29,99 €</strong> por informe completo.</p>
-            <!-- Botón de pago Stripe -->
-            <form action="https://tu-servidor.com/pago-stripe" method="POST">
-                <input type="hidden" name="producto" value="Informe completo de Maquinaria Agrícola">
-                <input type="hidden" name="precio" value="29.99">
-                <button type="submit">Comprar ahora</button>
-            </form>
-        </section>
+    <section>
+        <h2>Beneficios de nuestro informe</h2>
+        <ul>
+            <li>Historial completo de la maquinaria</li>
+            <li>Verificación de ITV y revisiones</li>
+            <li>Evita sorpresas al comprar o vender</li>
+            <li>Información confiable y actualizada</li>
+        </ul>
+    </section>
 
-        <section class="detalle-informe">
-            <h2>Qué incluye el informe</h2>
-            <ul>
-                <li>Historial completo de la maquinaria</li>
-                <li>Registros de ITV y revisiones</li>
-                <li>Estado general y detalles técnicos</li>
-                <li>Recomendaciones para mantenimiento o compra</li>
-            </ul>
-        </section>
-    </main>
+    <section>
+        <h2>Precio del informe</h2>
+        <p>Solo <strong>29,99 €</strong> por informe completo.</p>
+        <form action="https://tu-servidor.com/pago-stripe" method="POST">
+            <input type="hidden" name="producto" value="Informe completo de Maquinaria Agrícola">
+            <input type="hidden" name="precio" value="29.99">
+            <button type="submit" class="btn-compra">Comprar ahora</button>
+        </form>
+    </section>
 
-    <footer>
-        <p>&copy; 2026 TuWeb. Todos los derechos reservados.</p>
-    </footer>
+    <section>
+        <h2>Qué incluye el informe</h2>
+        <ul>
+            <li>Historial completo de la maquinaria</li>
+            <li>Registros de ITV y revisiones</li>
+            <li>Estado general y detalles técnicos</li>
+            <li>Recomendaciones para mantenimiento o compra</li>
+        </ul>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2026 TuWeb. Todos los derechos reservados.</p>
+</footer>
+
 </body>
 </html>
