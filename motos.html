@@ -7,32 +7,69 @@
 <meta name="description" content="Solicita un informe completo de motos matriculadas en España. Conoce cargas, historial de ITV, kilometraje, titulares y más antes de comprar.">
 <link rel="icon" href="favicon.png" type="image/png">
 
-<meta property="og:title" content="Informe completo de Motos | InformeVehículoDGT">
-<meta property="og:description" content="Consulta historial completo de motos antes de comprar. Cargas, ITV, titulares y kilometraje.">
-<meta property="og:image" content="favicon.png">
-<meta property="og:type" content="website">
-
 <style>
-/* Igual que coches.html, omito repetir para no saturar */
+*{box-sizing:border-box;}
+body{font-family:Arial,sans-serif;margin:0;padding:0;background:#f4f4f4;color:#333;overflow-x:hidden;}
+header{background:#003366;color:#fff;padding:30px 15px;text-align:center;}
+header h1{margin:0;font-size:2em;word-wrap:break-word;}
+header p{margin-top:10px;font-size:1.1em;}
+.container{max-width:1000px;margin:auto;padding:20px;background:#fff;border-radius:10px;box-shadow:0 4px 15px rgba(0,0,0,0.1);}
+h2,h3{color:#003366;}
+.form-section{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:20px;}
+.form-section input{padding:14px;font-size:16px;flex:1 1 40%;border:1px solid #003366;border-radius:4px;}
+.product-card{border:3px solid #ff6600;border-radius:10px;padding:30px;text-align:center;width:320px;margin:auto;box-shadow:0 0 15px rgba(255,102,0,0.3);}
+.old-price{text-decoration:line-through;color:#999;margin-right:10px;font-size:1.2em;}
+.price{font-size:2.2em;color:#003366;font-weight:bold;}
+.button{display:inline-block;background:#ff6600;color:#fff;padding:18px 30px;border:none;border-radius:8px;font-weight:bold;margin-top:20px;font-size:1.2em;cursor:pointer;}
+.button:hover{background:#e65c00;}
+.timer{color:red;font-weight:bold;font-size:1.2em;margin-top:10px;}
+.benefits{background:#fff3e6;padding:25px;border-radius:10px;margin-top:30px;border:2px solid #ff6600;}
+.benefits li{margin:10px 0;}
+.faq{margin-top:40px;}
+footer{text-align:center;color:#666;font-size:0.9em;margin-top:40px;padding-bottom:20px;}
 </style>
 
 <script>
 const stripeURL="https://buy.stripe.com/fZubJ1ftv6IR3Qt6WigrS02";
-function goToStripe(){/* Igual que coches.html */}
-// Contador 59min igual
+
+function goToStripe(){
+  let matricula=document.getElementById("matricula").value.trim();
+  let email=document.getElementById("email").value.trim();
+  if(matricula==""||email==""){alert("Introduce matrícula y email");return;}
+  let url = stripeURL + "?prefilled_email=" + encodeURIComponent(email)
+                        + "&client_reference_id=" + encodeURIComponent(matricula)
+                        + "&locale=es";
+  window.location.href = url;
+}
+
+/* ⏱️ CONTADOR 59 MIN */
+let countdownDate=new Date().getTime()+59*60*1000;
+setInterval(function(){
+  let now=new Date().getTime();
+  let distance=countdownDate-now;
+  let minutes=Math.floor((distance%(1000*60*60))/(1000*60));
+  let seconds=Math.floor((distance%(1000*60))/1000);
+  if(distance<0){minutes=0;seconds=0;}
+  document.getElementById("countdown").innerHTML="⏳ Oferta limitada: "+minutes+"m "+seconds+"s";
+},1000);
 </script>
+
 </head>
 <body>
+
 <header>
 <h1>Informe completo de Motos</h1>
 <p>Consulta el historial completo de motos antes de comprar</p>
 </header>
+
 <div class="container">
+
 <h2>Introduce matrícula y correo electrónico</h2>
 <div class="form-section">
 <input type="text" id="matricula" placeholder="Matrícula del vehículo">
 <input type="email" id="email" placeholder="Correo electrónico">
 </div>
+
 <div class="product-card">
 <h3>Informe Completo</h3>
 <p>Entrega inmediata</p>
@@ -75,9 +112,12 @@ function goToStripe(){/* Igual que coches.html */}
 <p><strong>¿Qué incluye el informe?</strong><br>Historial completo, cargas, ITV, kilometraje y datos técnicos.</p>
 <p><strong>¿Cuánto tarda?</strong><br>Entrega normalmente en pocas horas.</p>
 </div>
+
 </div>
+
 <footer>
 <p>&copy; 2026 InformeVehículoDGT</p>
 </footer>
+
 </body>
 </html>
