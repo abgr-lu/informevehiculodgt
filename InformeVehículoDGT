@@ -53,6 +53,11 @@ input,select{width:100%;padding:10px;margin:10px 0 20px 0;}
 <option>Informe urgente</option>
 </select>
 
+<!-- Checkbox legal obligatorio -->
+<label style="display:block;margin-top:10px;font-size:14px;">
+<input type="checkbox" name="acepto" required> He leído y acepto la <a href="/privacidad.html" target="_blank">Política de Privacidad</a> y los <a href="/terminos-condiciones.html" target="_blank">Términos y Condiciones</a>
+</label>
+
 <button type="submit">Solicitar informe</button>
 </form>
 
@@ -60,14 +65,39 @@ input,select{width:100%;padding:10px;margin:10px 0 20px 0;}
 Este servicio actúa como intermediario en la obtención de informes de vehículos basados en datos públicos de la DGT.
 </p>
 </div>
-<footer style="text-align:center;margin-top:40px;padding:20px;font-size:14px;background:#f4f4f4;">
-<p>
-<a href="/aviso-legal.html">Aviso Legal</a> |
-<a href="/privacidad.html">Política de Privacidad</a> |
-<a href="/cookies.html">Cookies</a> |
-<a href="/terminos-condiciones.html">Términos y Condiciones</a>
-</p>
-<p>&copy; 2026 InformeVehículoDGT - Todos los derechos reservados</p>
+
+<!-- FOOTER PROFESIONAL -->
+<footer style="background:#f4f4f4;padding:30px 20px;font-family:Arial,sans-serif;color:#333;text-align:center;">
+
+  <!-- Bloque Legal -->
+  <div style="margin-bottom:20px;font-size:14px;">
+    <a href="/aviso-legal.html" style="color:#003366;text-decoration:none;margin:0 8px;">Aviso Legal</a> |
+    <a href="/privacidad.html" style="color:#003366;text-decoration:none;margin:0 8px;">Política de Privacidad</a> |
+    <a href="/cookies.html" style="color:#003366;text-decoration:none;margin:0 8px;">Cookies</a> |
+    <a href="/terminos-condiciones.html" style="color:#003366;text-decoration:none;margin:0 8px;">Términos y Condiciones</a>
+  </div>
+
+  <!-- Refuerzo de Confianza -->
+  <div style="margin-bottom:20px;font-size:15px;">
+    🔒 Pago seguro con Stripe • ⏱️ Entrega inmediata • 📄 Informe oficial DGT
+  </div>
+
+  <!-- Botón de Contacto -->
+  <div style="margin-bottom:20px;">
+    <a href="mailto:info@informevehiculodgt.es" style="background:#ff6600;color:#fff;padding:12px 25px;border-radius:6px;text-decoration:none;font-weight:bold;">Contacto / Consultas</a>
+  </div>
+
+  <!-- Mensaje de Refuerzo de Compra -->
+  <div style="margin-bottom:20px;font-size:16px;color:#003366;">
+    Consigue tu <strong>informe completo del vehículo</strong> en minutos y compra con total tranquilidad.
+  </div>
+
+  <!-- Copyright -->
+  <div style="font-size:13px;color:#666;">
+    &copy; 2026 InformeVehículoDGT - Todos los derechos reservados
+  </div>
+
 </footer>
+
 </body>
 </html>
