@@ -4,15 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Informe completo de Coches | InformeVehículoDGT</title>
-<meta name="description" content="Solicita un informe completo de coches matriculados en España. Conoce cargas, historial de ITV, kilometraje, titulares y más antes de comprar.">
 <link rel="icon" href="favicon.png" type="image/png">
-
-<!-- SEO Social -->
-<meta property="og:title" content="Informe completo de Coches | InformeVehículoDGT">
-<meta property="og:description" content="Consulta historial completo de coches antes de comprar. Cargas, ITV, titulares y kilometraje.">
-<meta property="og:image" content="favicon.png">
-<meta property="og:type" content="website">
-
 <style>
 *{box-sizing:border-box;}
 body{font-family:Arial,sans-serif;margin:0;padding:0;background:#f4f4f4;color:#333;overflow-x:hidden;}
@@ -26,13 +18,14 @@ h2,h3{color:#003366;}
 .product-card{border:3px solid #ff6600;border-radius:10px;padding:30px;text-align:center;width:320px;margin:auto;box-shadow:0 0 15px rgba(255,102,0,0.3);}
 .old-price{text-decoration:line-through;color:#999;margin-right:10px;font-size:1.2em;}
 .price{font-size:2.2em;color:#003366;font-weight:bold;}
-.button{display:inline-block;background:#ff6600;color:#fff;padding:18px 30px;border:none;border-radius:8px;font-weight:bold;margin-top:20px;font-size:1.2em;cursor:pointer;}
-.button:hover{background:#e65c00;}
+.button{display:inline-block;background:#ff6600;color:#fff;padding:18px 30px;border:none;border-radius:8px;font-weight:bold;margin-top:20px;font-size:1.2em;cursor:pointer;transition: background 0.3s, transform 0.2s;}
+.button:hover{background:#e65c00;transform:scale(1.05);}
 .timer{color:red;font-weight:bold;font-size:1.2em;margin-top:10px;}
 .benefits{background:#fff3e6;padding:25px;border-radius:10px;margin-top:30px;border:2px solid #ff6600;}
 .benefits li{margin:10px 0;}
 .faq{margin-top:40px;}
 footer{text-align:center;color:#666;font-size:0.9em;margin-top:40px;padding-bottom:20px;}
+.microcopy{font-size:14px;color:#333;margin-top:10px;text-align:center;}
 </style>
 
 <script>
@@ -41,17 +34,13 @@ const stripeURL="https://buy.stripe.com/fZubJ1ftv6IR3Qt6WigrS02";
 function goToStripe(){
   let matricula=document.getElementById("matricula").value.trim();
   let email=document.getElementById("email").value.trim();
-  if(matricula==""||email==""){
-    alert("Introduce matrícula y email");
-    return;
-  }
+  if(matricula==""||email==""){alert("Introduce matrícula y email");return;}
   let url = stripeURL + "?prefilled_email=" + encodeURIComponent(email)
                         + "&client_reference_id=" + encodeURIComponent(matricula)
                         + "&locale=es";
-  window.location.href=url;
+  window.location.href = url;
 }
 
-/* ⏱️ CONTADOR 59 MIN */
 let countdownDate=new Date().getTime()+59*60*1000;
 setInterval(function(){
   let now=new Date().getTime();
@@ -62,30 +51,35 @@ setInterval(function(){
   document.getElementById("countdown").innerHTML="⏳ Oferta limitada: "+minutes+"m "+seconds+"s";
 },1000);
 </script>
+
 </head>
 <body>
 
 <header>
 <h1>Informe completo de Coches</h1>
-<p>Consulta el historial completo de coches antes de comprar</p>
+<p>Consulta el historial completo antes de comprar</p>
 </header>
 
 <div class="container">
+
 <h2>Introduce matrícula y correo electrónico</h2>
 <div class="form-section">
-<input type="text" id="matricula" placeholder="Matrícula del vehículo">
+<input type="text" id="matricula" placeholder="Matrícula del coche">
 <input type="email" id="email" placeholder="Correo electrónico">
 </div>
 
 <div class="product-card">
 <h3>Informe Completo</h3>
 <p>Entrega inmediata</p>
-<p>
-<span class="old-price">39,99 €</span>
-<span class="price">24,99 €</span>
+<p><span class="old-price">39,99 €</span> <span class="price">24,99 €</span></p>
+
+<button class="button" onclick="goToStripe()">
+🚀 Obtén tu informe oficial DGT en minutos
+</button>
+
+<p class="microcopy">
+🔒 Pago seguro • ⏱️ Entrega inmediata • 📄 Informe oficial DGT • Evita fraudes y sorpresas
 </p>
-<p class="timer" id="countdown"></p>
-<button class="button" onclick="goToStripe()">Solicitar Informe</button>
 </div>
 
 <div class="benefits">
@@ -124,8 +118,26 @@ setInterval(function(){
 </div>
 
 </div>
+
 <footer>
-<p>&copy; 2026 InformeVehículoDGT</p>
+<div style="margin-bottom:20px;font-size:14px;">
+<a href="/aviso-legal.html" style="color:#003366;text-decoration:none;margin:0 8px;">Aviso Legal</a> |
+<a href="/privacidad.html" style="color:#003366;text-decoration:none;margin:0 8px;">Política de Privacidad</a> |
+<a href="/cookies.html" style="color:#003366;text-decoration:none;margin:0 8px;">Cookies</a> |
+<a href="/terminos-condiciones.html" style="color:#003366;text-decoration:none;margin:0 8px;">Términos y Condiciones</a>
+</div>
+<div style="margin-bottom:20px;font-size:15px;">
+🔒 Pago seguro con Stripe • ⏱️ Entrega inmediata • 📄 Informe oficial DGT
+</div>
+<div style="margin-bottom:20px;">
+<a href="mailto:info@informevehiculodgt.es" style="background:#ff6600;color:#fff;padding:12px 25px;border-radius:6px;text-decoration:none;font-weight:bold;">Contacto / Consultas</a>
+</div>
+<div style="margin-bottom:20px;font-size:16px;color:#003366;">
+Consigue tu <strong>informe completo del vehículo</strong> en minutos y compra con total tranquilidad.
+</div>
+<div style="font-size:13px;color:#666;">
+&copy; 2026 InformeVehículoDGT - Todos los derechos reservados
+</div>
 </footer>
 
 </body>
