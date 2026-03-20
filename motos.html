@@ -4,120 +4,55 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Informe completo de Motos | InformeVehículoDGT</title>
-<meta name="description" content="Solicita un informe completo de motos matriculadas en España. Conoce cargas, historial de ITV, kilometraje, titulares y más antes de comprar.">
-<link rel="icon" href="favicon.png" type="image/png">
 
 <style>
 *{box-sizing:border-box;}
-body{font-family:Arial,sans-serif;margin:0;padding:0;background:#f4f4f4;color:#333;overflow-x:hidden;}
-header{background:#003366;color:#fff;padding:30px 15px;text-align:center;}
-header h1{margin:0;font-size:2em;word-wrap:break-word;}
-header p{margin-top:10px;font-size:1.1em;}
+body{font-family:Arial,sans-serif;margin:0;background:#f4f4f4;color:#333;}
+header{background:#003366;color:#fff;padding:30px;text-align:center;}
 .container{max-width:1000px;margin:auto;padding:20px;background:#fff;border-radius:10px;box-shadow:0 4px 15px rgba(0,0,0,0.1);}
-h2,h3{color:#003366;}
-.form-section{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:20px;}
-.form-section input{padding:14px;font-size:16px;flex:1 1 40%;border:1px solid #003366;border-radius:4px;}
-.product-card{border:3px solid #ff6600;border-radius:10px;padding:30px;text-align:center;width:320px;margin:auto;box-shadow:0 0 15px rgba(255,102,0,0.3);}
-.old-price{text-decoration:line-through;color:#999;margin-right:10px;font-size:1.2em;}
-.price{font-size:2.2em;color:#003366;font-weight:bold;}
-.button{display:inline-block;background:#ff6600;color:#fff;padding:18px 30px;border:none;border-radius:8px;font-weight:bold;margin-top:20px;font-size:1.2em;cursor:pointer;}
-.button:hover{background:#e65c00;}
-.timer{color:red;font-weight:bold;font-size:1.2em;margin-top:10px;}
-.benefits{background:#fff3e6;padding:25px;border-radius:10px;margin-top:30px;border:2px solid #ff6600;}
-.benefits li{margin:10px 0;}
-.faq{margin-top:40px;}
-footer{text-align:center;color:#666;font-size:0.9em;margin-top:40px;padding-bottom:20px;}
+h2,h3{text-align:center;color:#003366;}
+.form-card{border:3px solid #003366;border-radius:10px;padding:30px;text-align:center;width:350px;margin:30px auto;box-shadow:0 0 15px rgba(0,51,102,0.2);}
+.form-card input{width:100%;padding:12px;margin-bottom:20px;border-radius:6px;border:1px solid #003366;text-align:center;}
+.old-price{text-decoration:line-through;color:#999;}
+.price{font-size:2em;color:#003366;font-weight:bold;}
+.button{background:#ff6600;color:#fff;padding:16px;border:none;border-radius:8px;font-weight:bold;width:100%;cursor:pointer;}
+.microcopy{font-size:14px;margin-top:10px;}
 </style>
 
 <script>
 const stripeURL="https://buy.stripe.com/fZubJ1ftv6IR3Qt6WigrS02";
-
 function goToStripe(){
-  let matricula=document.getElementById("matricula").value.trim();
-  let email=document.getElementById("email").value.trim();
-  if(matricula==""||email==""){alert("Introduce matrícula y email");return;}
-  let url = stripeURL + "?prefilled_email=" + encodeURIComponent(email)
-                        + "&client_reference_id=" + encodeURIComponent(matricula)
-                        + "&locale=es";
-  window.location.href = url;
+let m=document.getElementById("matricula").value;
+let e=document.getElementById("email").value;
+if(!m||!e){alert("Introduce matrícula y email");return;}
+window.location.href=stripeURL+"?prefilled_email="+e+"&client_reference_id="+m+"&locale=es";
 }
-
-/* ⏱️ CONTADOR 59 MIN */
-let countdownDate=new Date().getTime()+59*60*1000;
-setInterval(function(){
-  let now=new Date().getTime();
-  let distance=countdownDate-now;
-  let minutes=Math.floor((distance%(1000*60*60))/(1000*60));
-  let seconds=Math.floor((distance%(1000*60))/1000);
-  if(distance<0){minutes=0;seconds=0;}
-  document.getElementById("countdown").innerHTML="⏳ Oferta limitada: "+minutes+"m "+seconds+"s";
-},1000);
 </script>
-
 </head>
+
 <body>
 
 <header>
 <h1>Informe completo de Motos</h1>
-<p>Consulta el historial completo de motos antes de comprar</p>
+<p>Consulta el historial antes de comprar tu moto</p>
 </header>
 
 <div class="container">
 
-<h2>Introduce matrícula y correo electrónico</h2>
-<div class="form-section">
-<input type="text" id="matricula" placeholder="Matrícula del vehículo">
+<div class="form-card">
+<h3>Introduce matrícula y correo electrónico</h3>
+
+<input type="text" id="matricula" placeholder="Matrícula de la moto">
 <input type="email" id="email" placeholder="Correo electrónico">
-</div>
 
-<div class="product-card">
-<h3>Informe Completo</h3>
-<p>Entrega inmediata</p>
 <p><span class="old-price">39,99 €</span> <span class="price">24,99 €</span></p>
-<p class="timer" id="countdown"></p>
-<button class="button" onclick="goToStripe()">Solicitar Informe</button>
-</div>
+<p><strong>Entrega inmediata</strong></p>
 
-<div class="benefits">
-<h3>¿Por qué solicitar el informe antes de comprar?</h3>
-<ul>
-<li>🔒 Evita fraudes y estafas</li>
-<li>⚖️ Comprueba cargas y embargos</li>
-<li>📉 Detecta problemas antes de pagar</li>
-<li>📊 Consulta historial real del vehículo</li>
-<li>🧾 Verifica kilometraje y titulares</li>
-<li>🛠️ Revisa ITV y estado técnico</li>
-<li>🚗 Válido para cualquier vehículo</li>
-<li>✅ Compra con total tranquilidad</li>
-</ul>
-</div>
+<button class="button" onclick="goToStripe()">🚀 Obtener informe</button>
 
-<h2>Tipos de vehículos disponibles</h2>
-<ul>
-<li>Coches</li>
-<li>Motos</li>
-<li>Furgonetas y camionetas</li>
-<li>Autocaravanas</li>
-<li>Camiones</li>
-<li>Autobuses</li>
-<li>Vehículos eléctricos e híbridos</li>
-<li>Maquinaria y motores</li>
-<li>Remolques</li>
-</ul>
-
-<div class="faq">
-<h2>Preguntas Frecuentes</h2>
-<p><strong>Horario:</strong> Lunes a Viernes de 9:00 a 18:00</p>
-<p><strong>Contacto:</strong><br><a href="mailto:info@informevehiculodgt.es">info@informevehiculodgt.es</a></p>
-<p><strong>¿Qué incluye el informe?</strong><br>Historial completo, cargas, ITV, kilometraje y datos técnicos.</p>
-<p><strong>¿Cuánto tarda?</strong><br>Entrega normalmente en pocas horas.</p>
+<p class="microcopy">🔒 Pago seguro • 📄 Informe oficial DGT</p>
 </div>
 
 </div>
-
-<footer>
-<p>&copy; 2026 InformeVehículoDGT</p>
-</footer>
-
 </body>
 </html>
