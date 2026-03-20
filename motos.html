@@ -5,85 +5,53 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Informe completo de Motos | InformeVehículoDGT</title>
 <link rel="icon" href="favicon.png" type="image/png">
-
 <style>
 *{box-sizing:border-box;}
 body{font-family:Arial,sans-serif;margin:0;padding:0;background:#f4f4f4;color:#333;overflow-x:hidden;}
 header{background:#003366;color:#fff;padding:30px 15px;text-align:center;}
-header h1{margin:0;font-size:2em;}
+header h1{margin:0;font-size:2em;word-wrap:break-word;}
 header p{margin-top:10px;font-size:1.1em;}
 .container{max-width:1000px;margin:auto;padding:20px;background:#fff;border-radius:10px;box-shadow:0 4px 15px rgba(0,0,0,0.1);}
 h2,h3{color:#003366;text-align:center;}
-
 .old-price{text-decoration:line-through;color:#999;margin-right:10px;font-size:1.2em;}
 .price{font-size:2.2em;color:#003366;font-weight:bold;}
-
 .button{display:inline-block;background:#ff6600;color:#fff;padding:18px 30px;border:none;border-radius:8px;font-weight:bold;margin-top:20px;font-size:1.2em;cursor:pointer;transition: background 0.3s, transform 0.2s;}
 .button:hover{background:#e65c00;transform:scale(1.05);}
-
+.timer{color:red;font-weight:bold;font-size:1.2em;margin-top:10px;text-align:center;}
 .benefits{background:#fff3e6;padding:25px;border-radius:10px;margin-top:30px;border:2px solid #ff6600;text-align:center;}
 .benefits ul, .vehicle-types ul{list-style:none;padding:0;text-align:center;margin:0 auto;}
 .benefits li, .vehicle-types li{margin:10px 0;}
-
 .faq{margin-top:40px;text-align:center;}
 footer{text-align:center;color:#666;font-size:0.9em;margin-top:40px;padding-bottom:20px;}
 .microcopy{font-size:14px;color:#333;margin-top:10px;text-align:center;}
 
-.form-card{
-border:3px solid #003366;
-border-radius:10px;
-padding:30px;
-text-align:center;
-width:350px;
-margin:30px auto;
-box-shadow:0 0 15px rgba(0,51,102,0.2);
-}
-
-.form-card input{
-width:100%;
-padding:12px;
-font-size:16px;
-border:1px solid #003366;
-border-radius:6px;
-text-align:center;
-margin-bottom:20px;
-}
+.form-card{border:3px solid #003366;border-radius:10px;padding:30px;text-align:center;width:350px;margin:30px auto;box-shadow:0 0 15px rgba(0,51,102,0.2);}
+.form-card input{width:100%;padding:12px;font-size:16px;border:1px solid #003366;border-radius:6px;text-align:center;margin-bottom:20px;}
+.form-card p{margin:10px 0;}
 </style>
 
 <script>
 const stripeURL="https://buy.stripe.com/fZubJ1ftv6IR3Qt6WigrS02";
 
 function goToStripe(){
-let matricula=document.getElementById("matricula").value.trim();
-let email=document.getElementById("email").value.trim();
-
-if(matricula==""||email==""){
-alert("Introduce matrícula y email");
-return;
+  let matricula=document.getElementById("matricula").value.trim();
+  let email=document.getElementById("email").value.trim();
+  if(matricula==""||email==""){alert("Introduce matrícula y email");return;}
+  let url = stripeURL + "?prefilled_email=" + encodeURIComponent(email)
+                        + "&client_reference_id=" + encodeURIComponent(matricula)
+                        + "&locale=es";
+  window.location.href = url;
 }
 
-let url = stripeURL + "?prefilled_email=" + encodeURIComponent(email)
-                      + "&client_reference_id=" + encodeURIComponent(matricula)
-                      + "&locale=es";
-
-window.location.href = url;
-}
-
-// contador 59 min
+// Contador 59 minutos
 let countdownDate=new Date().getTime()+59*60*1000;
-
 setInterval(function(){
-let now=new Date().getTime();
-let distance=countdownDate-now;
-
-let minutes=Math.floor((distance%(1000*60*60))/(1000*60));
-let seconds=Math.floor((distance%(1000*60))/1000);
-
-if(distance<0){minutes=0;seconds=0;}
-
-document.getElementById("countdown").innerHTML=
-"⏳ Oferta limitada: "+minutes+"m "+seconds+"s";
-
+  let now=new Date().getTime();
+  let distance=countdownDate-now;
+  let minutes=Math.floor((distance%(1000*60*60))/(1000*60));
+  let seconds=Math.floor((distance%(1000*60))/1000);
+  if(distance<0){minutes=0;seconds=0;}
+  document.getElementById("countdown").innerHTML="⏳ Oferta limitada: "+minutes+"m "+seconds+"s";
 },1000);
 </script>
 
@@ -99,26 +67,24 @@ document.getElementById("countdown").innerHTML=
 
 <h2 id="countdown">⏳ Oferta limitada: 59m 00s</h2>
 
-<!-- CUADRO ÚNICO -->
 <div class="form-card">
-<h3>Introduce matrícula y correo electrónico</h3>
+  <h3>Introduce matrícula y correo electrónico</h3>
 
-<input type="text" id="matricula" placeholder="Matrícula de la moto">
-<input type="email" id="email" placeholder="Correo electrónico">
+  <input type="text" id="matricula" placeholder="Matrícula de la moto">
+  <input type="email" id="email" placeholder="Correo electrónico">
 
-<p><span class="old-price">39,99 €</span> <span class="price">24,99 €</span></p>
-<p style="font-weight:bold; color:#003366;">Entrega inmediata</p>
+  <p><span class="old-price">39,99 €</span> <span class="price">24,99 €</span></p>
+  <p style="font-weight:bold; color:#003366;">Entrega inmediata</p>
 
-<button class="button" onclick="goToStripe()">
-🚀 Obtén tu informe oficial DGT en minutos
-</button>
+  <button class="button" onclick="goToStripe()">
+    🚀 Obtén tu informe oficial DGT en minutos
+  </button>
 
-<p class="microcopy">
-🔒 Pago seguro • ⏱️ Entrega inmediata • 📄 Informe oficial DGT • Evita fraudes y sorpresas
-</p>
+  <p class="microcopy">
+    🔒 Pago seguro • ⏱️ Entrega inmediata • 📄 Informe oficial DGT • Evita fraudes y sorpresas
+  </p>
 </div>
 
-<!-- BENEFICIOS -->
 <div class="benefits">
 <h3>¿Por qué solicitar el informe antes de comprar?</h3>
 <ul>
@@ -136,18 +102,18 @@ document.getElementById("countdown").innerHTML=
 <h2>Tipos de vehículos disponibles</h2>
 <div class="vehicle-types">
 <ul>
+<li>Coches</li>
 <li>Motos</li>
-<li>Ciclomotores</li>
-<li>Scooters</li>
-<li>Quads</li>
-<li>Motocross</li>
-<li>Enduro</li>
-<li>Motos eléctricas</li>
-<li>Remolques para moto</li>
+<li>Furgonetas y camionetas</li>
+<li>Autocaravanas</li>
+<li>Camiones</li>
+<li>Autobuses</li>
+<li>Vehículos eléctricos e híbridos</li>
+<li>Maquinaria y motores</li>
+<li>Remolques</li>
 </ul>
 </div>
 
-<!-- FAQ -->
 <div class="faq">
 <h2>Preguntas Frecuentes</h2>
 <p><strong>Horario:</strong> Lunes a Viernes de 9:00 a 18:00</p>
@@ -158,27 +124,24 @@ document.getElementById("countdown").innerHTML=
 
 </div>
 
-<!-- FOOTER COMPLETO -->
 <footer>
 <div style="margin-bottom:20px;font-size:14px;">
-<a href="/aviso-legal.html" style="color:#003366;margin:0 8px;">Aviso Legal</a> |
-<a href="/privacidad.html" style="color:#003366;margin:0 8px;">Privacidad</a> |
-<a href="/cookies.html" style="color:#003366;margin:0 8px;">Cookies</a> |
-<a href="/terminos-condiciones.html" style="color:#003366;margin:0 8px;">Términos</a>
+<a href="/aviso-legal.html" style="color:#003366;text-decoration:none;margin:0 8px;">Aviso Legal</a> |
+<a href="/privacidad.html" style="color:#003366;text-decoration:none;margin:0 8px;">Política de Privacidad</a> |
+<a href="/cookies.html" style="color:#003366;text-decoration:none;margin:0 8px;">Cookies</a> |
+<a href="/terminos-condiciones.html" style="color:#003366;text-decoration:none;margin:0 8px;">Términos y Condiciones</a>
 </div>
-
-<div style="margin-bottom:20px;">
+<div style="margin-bottom:20px;font-size:15px;">
 🔒 Pago seguro con Stripe • ⏱️ Entrega inmediata • 📄 Informe oficial DGT
 </div>
-
 <div style="margin-bottom:20px;">
-<a href="mailto:info@informevehiculodgt.es" style="background:#ff6600;color:#fff;padding:10px 20px;border-radius:6px;text-decoration:none;">
-Contacto
-</a>
+<a href="mailto:info@informevehiculodgt.es" style="background:#ff6600;color:#fff;padding:12px 25px;border-radius:6px;text-decoration:none;font-weight:bold;">Contacto / Consultas</a>
 </div>
-
-<div style="font-size:13px;">
-© 2026 InformeVehículoDGT - Todos los derechos reservados
+<div style="margin-bottom:20px;font-size:16px;color:#003366;">
+Consigue tu <strong>informe completo del vehículo</strong> en minutos y compra con total tranquilidad.
+</div>
+<div style="font-size:13px;color:#666;">
+&copy; 2026 InformeVehículoDGT - Todos los derechos reservados
 </div>
 </footer>
 
