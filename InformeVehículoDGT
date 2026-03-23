@@ -4,12 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>InformeVehículoDGT | Historial completo de vehículos</title>
+<link rel="icon" href="favicon.png" type="image/png">
 <style>
 *{box-sizing:border-box;}
-body{font-family:Arial,sans-serif;margin:0;padding:0;background:#f4f4f4;color:#333;}
-header{background:#003366;color:#fff;padding:30px;text-align:center;}
-header h1{margin:0;font-size:2em;}
-header p{margin-top:10px;font-size:1.2em;font-weight:bold;}
+body{font-family:Arial,sans-serif;margin:0;padding:0;background:#f4f4f4;color:#333;overflow-x:hidden;}
+header{background:#003366;color:#fff;padding:30px 15px;text-align:center;}
+header h1{margin:0;font-size:2em;word-wrap:break-word;}
+header p{margin-top:15px;font-size:1.2em;font-weight:bold;max-width:600px;margin-left:auto;margin-right:auto;}
 .container{max-width:1000px;margin:auto;padding:20px;background:#fff;border-radius:10px;box-shadow:0 4px 15px rgba(0,0,0,0.1);}
 h2,h3{text-align:center;color:#003366;}
 .form-card{border:3px solid #003366;border-radius:10px;padding:30px;text-align:center;width:350px;margin:30px auto;box-shadow:0 0 15px rgba(0,51,102,0.2);}
@@ -21,6 +22,7 @@ h2,h3{text-align:center;color:#003366;}
 .benefits{background:#fff3e6;padding:25px;border-radius:10px;margin-top:30px;border:2px solid #ff6600;text-align:center;}
 .benefits ul{list-style:none;padding:0;}
 .benefits li{margin:10px 0;}
+.testimonial{background:#fff;border-radius:8px;padding:15px;margin:10px 0;box-shadow:0 2px 8px rgba(0,0,0,0.1);}
 footer{text-align:center;color:#666;margin-top:40px;padding-bottom:40px;}
 </style>
 <script>
@@ -29,22 +31,27 @@ function goToStripe(){let m=document.getElementById("matricula").value.trim();le
 </script>
 </head>
 <body>
+
 <header>
 <h1>InformeVehículoDGT</h1>
-<p>Consulta el historial completo de cualquier vehículo antes de comprar</p>
+<p>Consulta el historial completo de cualquier vehículo antes de comprar y evita sorpresas.</p>
 </header>
+
 <div class="container">
+
 <div class="form-card">
 <h3>Introduce matrícula y correo electrónico</h3>
 <input type="text" id="matricula" placeholder="Matrícula del vehículo">
 <input type="email" id="email" placeholder="Correo electrónico">
 <p><span class="old-price">39,99 €</span> <span class="price">24,99 €</span></p>
+<p style="color:red;font-weight:bold;">⏳ Oferta limitada disponible hoy</p>
 <p><strong>Entrega inmediata</strong></p>
 <button class="button" onclick="goToStripe()">🚀 Obtener informe ahora por 24,99 €</button>
 <p style="font-size:14px;">🔒 Pago 100% seguro • 📄 Informe oficial DGT • ⏱️ Entrega rápida</p>
 </div>
+
 <div class="benefits">
-<h3>Beneficios</h3>
+<h3>Beneficios de nuestros informes</h3>
 <ul>
 <li>Evita fraudes y estafas</li>
 <li>Consulta cargas y embargos</li>
@@ -53,7 +60,23 @@ function goToStripe(){let m=document.getElementById("matricula").value.trim();le
 <li>Revisa estado técnico e ITV</li>
 </ul>
 </div>
+
+<div class="benefits">
+<h3>Opiniones de clientes</h3>
+<div class="testimonial">⭐⭐⭐⭐⭐ “Muy completo y fiable, perfecto para decidir antes de comprar.” — Laura M.</div>
+<div class="testimonial">⭐⭐⭐⭐⭐ “Rápido y sencillo, me dio seguridad y tranquilidad.” — Antonio R.</div>
+<div class="testimonial">⭐⭐⭐⭐⭐ “Todo claro y transparente, excelente servicio.” — Javier T.</div>
 </div>
+
+<div class="benefits">
+<h3>Preguntas Frecuentes</h3>
+<p><strong>¿Cuánto tarda?</strong><br>Entrega normalmente en minutos.</p>
+<p><strong>¿Qué incluye?</strong><br>Historial completo de cargas, ITV, kilometraje y datos técnicos del vehículo.</p>
+<p><strong>¿Es seguro?</strong><br>Sí, pago con Stripe 100% seguro.</p>
+</div>
+
+</div>
+
 <footer>
 <div style="margin-bottom:20px;font-size:14px;">
 <a href="/aviso-legal.html">Aviso Legal</a> |
@@ -74,5 +97,6 @@ Consigue tu <strong>informe completo del vehículo</strong> en minutos y compra 
 &copy; 2026 InformeVehículoDGT - Todos los derechos reservados
 </div>
 </footer>
+
 </body>
 </html>
